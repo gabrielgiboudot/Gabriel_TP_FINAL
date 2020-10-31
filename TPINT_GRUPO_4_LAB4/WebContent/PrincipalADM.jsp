@@ -5,35 +5,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Administracion</title>
+<link rel="shortcut icon" href="https://i.ibb.co/wcwqp98/banco.png">
+
+<!--Bootstrap-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<!--Estilos propios-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Estilos/PrincipalADM.css" />
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Home Bank</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="PrincipalADM.jsp">Inicio</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar clientes <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="ABMclientes.jsp">ABM Clientes</a></li>
-          <li><a href="#">Apertura de cuentas</a></li>
-        </ul>
+
+
+<nav class="navbar navbar-expand-lg navbar-light  bg-dark text-white-50">
+
+          <a class="navbar-brand" style="color: white" href="#">Home Bank</a>
+
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="PrincipalADM.jsp" style="color:white">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                 <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" style="color: white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administrar clientes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="ABMclientes.jsp">ABM Clientes</a>
+          <a class="dropdown-item" href="#">Apertura de cuentas</a>
+        </div>
       </li>
-      <li><a href="#">Reportes</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-      <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
-    </ul>
-  </div>
-</nav>
+      <li class="nav-item active">
+                    <a class="nav-link" href="#" style="color:white">Reportes <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+  
+       <span id="perfil" class="navbar-text" style="padding: 10px">
+            <a href="#">
+                <img
+                    src="https://i.ibb.co/Xzbf1pS/usuario.png" />
+            </a>
+            Perfil
+        </span>
+         <span id="salir" class="navbar-text">
+            <a href="Login.jsp">
+                <img
+                    src="https://i.ibb.co/TcV6LW4/salir-arriba-a-la-derecha.png" />
+            </a>
+           	Salir
+        </span>
+    </nav>
+    
+</div>
+
+
   
 <div class="container mt-3">
+<div class="footer-siempre-abajo" style="background-color:white">
   <h2>Se podra ver una lista de los prestamos solicitados dentro de los 5 dias</h2>
   <p>la idea de esto es poder dar una vista rapida a una tarea importante del administrador con sus usuarios. tendra un filtro rapido 
   	 para ver el estado de cada uno.</p>  
@@ -69,7 +99,18 @@
       </tr>
     </tbody>
   </table> 
+  </div> <!-- Footer siempre abajo -->
 </div>
 
+
+<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+            <span class="logo-text">© 2020 - By Grupo Nro 4 LAB4  - todos los derechos reservados </span>
+        </div>
+    </footer>
+
+<!-- bootstraps -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 </html>

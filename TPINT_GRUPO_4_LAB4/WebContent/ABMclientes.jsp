@@ -9,10 +9,7 @@
 <title>Login - home banking</title>
 <link rel="shortcut icon" href="https://i.ibb.co/wcwqp98/banco.png">
 <!--Bootstrap-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 <!--Estilos propios-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Estilos/AMBclientes.css" />
@@ -45,27 +42,23 @@
                 </li>
             </ul>
         </div>
-       <span class="navbar-text" style="padding: 10px">
-            <asp:Label  style="color:white"  Text="Perfil" runat="server" />
+       <span id="perfil" class="navbar-text" style="padding: 10px">
             <a href="#">
                 <img
                     src="https://i.ibb.co/Xzbf1pS/usuario.png" />
             </a>
             Perfil
-             <asp:Label style="color:white" id="lblcant" Text="Perfil" runat="server" />
         </span>
-         <span class="navbar-text">
-            <asp:Label  style="color:white"  Text="Salir" runat="server" />
-            <a href="#">
+         <span id= "salir" class="navbar-text">
+            <a href="Login.jsp">
                 <img
                     src="https://i.ibb.co/TcV6LW4/salir-arriba-a-la-derecha.png" />
             </a>
            	Salir
-             <asp:Label style="color:white" id="lblcant" Text="Salir" runat="server" />
         </span>
     </nav>
     
-</div>
+</div> <!-- Footer siempre abajo -->
 
 <!-- Footer -->
 
@@ -75,5 +68,8 @@
         </div>
     </footer>
     
+    <!-- bootstraps -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 </html>
