@@ -20,7 +20,7 @@
       <li class="active"><a href="PrincipalADM.jsp">Inicio</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar clientes <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">ABM Clientes</a></li>
+          <li><a href="ABMclientes.jsp">ABM Clientes</a></li>
           <li><a href="#">Apertura de cuentas</a></li>
         </ul>
       </li>
