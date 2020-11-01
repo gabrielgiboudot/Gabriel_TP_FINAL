@@ -47,9 +47,9 @@
 						clientes </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" href="ABMclientes.jsp">ABM Clientes</a> <a
-							class="dropdown-item" href="#">Apertura de cuentas</a>
+							class="dropdown-item" href="ABMCuentas.jsp">Apertura de cuentas</a>
 					</div></li>
-				<li class="nav-item active"><a class="nav-link" href="#"
+				<li class="nav-item active"><a class="nav-link" href="Reportes.jsp"
 					style="color: white">Reportes <span class="sr-only">(current)</span></a>
 				</li>
 			</ul>
