@@ -16,8 +16,14 @@
 	crossorigin="anonymous">
 	
 <!--Estilos propios-->
+<<<<<<< HEAD
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/Estilos/PrincipalADM.css" />
+=======
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Estilos/PrincipalADM.css" />
+
+
+>>>>>>> a2b5f95c453db2f0bc91c1792a2cd74a1f23a5d7
 </head>
 <body>
 
