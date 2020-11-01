@@ -4,3 +4,10 @@
 
 #perfil { color: white; }
 #salir { color: white; }
+
+ @media screen and (max-width: 980px) {
+            .table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
