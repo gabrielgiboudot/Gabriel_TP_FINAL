@@ -20,21 +20,21 @@
       <li class="active"><a href="PrincipalADM.jsp">Inicio</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar clientes <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">ABM Clientes</a></li>
-          <li><a href="#">Apertura de cuentas</a></li>
+          <li><a href="ABMclientes.jsp">ABM Clientes</a></li>
+          <li><a href="ABMCuentas.jsp">Apertura de cuentas</a></li>
         </ul>
       </li>
       <li><a href="Reportes.jsp">Reportes</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+      <li><a href="DatosPersonalesADM.jsp"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
       <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
     </ul>
   </div>
 </nav>
   
 <div class="container mt-3">
-  <h2>La idea de esta ventana es poder ver los resportes</h2>
+  <h2>La idea de esta ventana es poder ver los reportes</h2>
   <p>podremos generar el reporte buscando por los filtros solicitados y se generara un archivo PDF. </p>  
   <input class="form-control" id="myInput" type="text" placeholder="">
   <br>

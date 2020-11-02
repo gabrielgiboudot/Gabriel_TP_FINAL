@@ -37,7 +37,7 @@
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="#">Recuperar contraseña</a>
+      <a class="underlineHover" href="PrincipalADM.jsp">Recuperar contraseña</a>
     </div>
 
   </div>

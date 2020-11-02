@@ -40,12 +40,12 @@
         </div>
       </li>
       <li class="nav-item active">
-                    <a class="nav-link" href="#" style="color:white">Reportes <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="Reportes.jsp" style="color:white">Reportes <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
        <span id="perfil" class="navbar-text" style="padding: 10px">
-            <a href="#">
+            <a href="DatosPersonalesADM.jsp">
                 <img
                     src="https://i.ibb.co/Xzbf1pS/usuario.png" />
             </a>

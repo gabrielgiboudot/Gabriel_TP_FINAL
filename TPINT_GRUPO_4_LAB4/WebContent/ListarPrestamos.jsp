@@ -18,7 +18,7 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <ul class="navbar-nav">
     <li class="nav-item active">
-      <a class="nav-link" href="Principal.jsp">Menu</a>
+      <a class="nav-link" href="PrincipalCLI.jsp">Menu</a>
     </li>
   </ul>
 </nav> 

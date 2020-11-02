@@ -16,14 +16,7 @@
 	crossorigin="anonymous">
 	
 <!--Estilos propios-->
-<<<<<<< HEAD
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/Estilos/PrincipalADM.css" />
-=======
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Estilos/PrincipalADM.css" />
-
-
->>>>>>> a2b5f95c453db2f0bc91c1792a2cd74a1f23a5d7
 </head>
 <body>
 
@@ -56,7 +49,7 @@
 		</div>
 
 		<span id="perfil" class="navbar-text" style="padding: 10px"> <a
-			href="#"> <img src="https://i.ibb.co/Xzbf1pS/usuario.png" />
+			href="DatosPersonalesADM.jsp"> <img src="https://i.ibb.co/Xzbf1pS/usuario.png" />
 		</a> Perfil
 		</span> <span id="salir" class="navbar-text"> <a href="Login.jsp">
 				<img src="https://i.ibb.co/TcV6LW4/salir-arriba-a-la-derecha.png" />
