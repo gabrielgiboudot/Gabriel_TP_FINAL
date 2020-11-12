@@ -17,6 +17,14 @@ public class DireccionesDaoImpl implements DireccionesDao{
 	
 	@Override
 	public List<Direcciones> obtenerTodos() {
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		cn = new Conexion();
 		cn.Open();
 		
@@ -44,6 +52,14 @@ public class DireccionesDaoImpl implements DireccionesDao{
 
 	@Override
 	public Direcciones obtenerUno(int id) {
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		cn = new Conexion();
 		cn.Open();
 		
@@ -69,6 +85,13 @@ public class DireccionesDaoImpl implements DireccionesDao{
 	@Override
 	public boolean insertar(Direcciones direccion) {
 		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		boolean estado= true;
 		
 		cn= new Conexion();
@@ -91,12 +114,19 @@ public class DireccionesDaoImpl implements DireccionesDao{
 	@Override
 	public boolean editar(Direcciones direccion) {
 		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		boolean estado= true;
 		
 		cn= new Conexion();
 		cn.Open();
 		
-		String query= "UPDATE direcciones SET Direccion='"+direccion.getDireccion()+"'WHERE IdDireccion = '"+direccion.getIdDireccion()+"'";
+		String query= "UPDATE usuarios SET direccion='"+direccion.getDireccion()+"'WHERE IdDireccion = '"+direccion.getIdDireccion()+"'";
 		try {
 			estado= cn.execute(query);
 			
@@ -113,12 +143,20 @@ public class DireccionesDaoImpl implements DireccionesDao{
 
 	@Override
 	public boolean borrar(int id) {
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		boolean estado= true;
 		
 		cn= new Conexion();
 		cn.Open();
 		
-		String query= "DELETE FROM Direcciones WHERE IdDireccion='"+id+"'";
+		String query= "DELETE FROM direcciones WHERE IdDireccion='"+id+"'";
 		try {
 			estado= cn.execute(query);
 			

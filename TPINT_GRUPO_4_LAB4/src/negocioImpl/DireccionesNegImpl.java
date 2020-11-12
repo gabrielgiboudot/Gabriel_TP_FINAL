@@ -24,12 +24,12 @@ public class DireccionesNegImpl implements DireccionesNeg{
 	
 	
 	@Override
-	public List<Direcciones> obtenerDirecciones() {
+	public List<Direcciones> obtenerTodos() {
 		return (ArrayList<Direcciones>)dirDao.obtenerTodos();
 	}
 
 	@Override
-	public Direcciones obtenerDireccion(int id) {
+	public Direcciones obtenerUno(int id) {
 		return dirDao.obtenerUno(id);
 	}
 

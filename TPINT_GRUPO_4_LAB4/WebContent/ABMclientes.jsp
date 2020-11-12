@@ -1,3 +1,6 @@
+<%@page import = "entidad.Usuarios" %>
+<%@page import="java.util.ArrayList" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -76,7 +79,11 @@
                     <input type="text" ID="txtCuil"  class="form-control" name="txtCuil" onkeypress="javascript:return solonumeros(event)" Style="margin: 5px; width: 100px;" placeholder="Cuil">
                 </div>
                 <div class="col text-center">
-                <input class="btn btn-primary"  name="btnBuscar" type="submit" value="Buscar" CssClass="btn btn-primary mb-2" Style="text-align: center; width: 100px;">
+                 <form method="post" action="ServletUsuarios" >
+               	 <input class="btn btn-primary"  name="btnBuscar" type="submit" value="Buscar" CssClass="btn btn-primary mb-2" Style="text-align: center; width: 100px;">
+                 <input class="btn btn-primary"  name="btnTodos" type="submit" value="Todos" CssClass="btn btn-primary mb-2" Style="text-align: center; width: 100px;">
+                 </form>
+                 
                 </div>
             </div>
         </div>
@@ -98,36 +105,30 @@
     </tr>
   </thead>
   <tbody>
+  
+  <% 
+	ArrayList<Usuarios> ListaUsuarios = null;
+	if(request.getAttribute("AllUsers")!=null)
+	{
+		ListaUsuarios = (ArrayList<Usuarios>)request.getAttribute("AllUsers");
+	}			
+  %>
+	
+	<%  if(ListaUsuarios!=null)
+		for(Usuarios user : ListaUsuarios) 
+		{
+	%>
     <tr>
       <td><input HeaderText="Borrado"  class="btn btn-primary" type="submit" name= "btnEliminar" Onclick="abrir()" id="btnEliminar" value="Eliminar" ></td>
       <td><input HeaderText="Modificacion" class="btn btn-primary" type="submit" name= "btnModificar" Onclick="Abrir_Modificar()" id="btnModificar" value="Modificar" ></td>
-      <th scope="row">1</th>
-      <td>Martin</td>
-      <td>Argañaraz</td>
-      <td>MartinArg98@gmail.com</td>
-      <td>40558512</td>
-      <td>21405585120</td>
+      <th scope="row"><%=user.getIdUsuario()%></th>
+      <td><%=user.getNombre()%></td>
+      <td><%=user.getApellido()%></td>
+      <td><%=user.getEmail()%></td>
+      <td><%=user.getDni()%></td>
+      <td><%=user.getCuil()%></td>
     </tr>
-     <tr>
-      <td><input class="btn btn-primary" type="submit" name= "btnEliminar" id="btnEliminar" Onclick="abrir()" value="Eliminar" ></td>
-      <td><input class="btn btn-primary" type="submit" name= "btnModificar" id="btnModificar" Onclick="Abrir_Modificar()" value="Modificar" ></td>
-      <th scope="row">2</th>
-      <td>Ana</td>
-      <td>Perez</td>
-      <td>Anaperez12@gmail.com</td>
-      <td>40558512</td>
-      <td>21405585120</td>
-    </tr>
-     <tr>
-      <td><input class="btn btn-primary" type="submit" name= "btnEliminar" id="btnEliminar"  Onclick="abrir()" value="Eliminar" ></td>
-      <td><input class="btn btn-primary" type="submit" name= "btnModificar" id="btnModificar" Onclick="Abrir_Modificar()" value="Modificar" ></td>
-      <th scope="row">3</th>
-      <td>Luciano</td>
-      <td>Souza</td>
-      <td>lu_souza76@gmail.com</td>
-      <td>40558512</td>
-      <td>21405585120</td>
-    </tr>
+   <%  } %>
   </tbody>
 </table>
             </div>

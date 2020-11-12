@@ -1,18 +1,19 @@
 package entidad;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Usuarios {
 
 		private int IdUsuario;
-		private int Dni;
+		private String Dni;
 		private String Cuil;
 		private String Nombre;
 		private String Apellido;
-		private Timestamp FechaNacimiento;
+		private Date FechaNacimiento;
 		private String Email;
 		private String NombreUsuario;
-		private String Contraseña;
+		private String Contrase�a;
 		private Generos Genero;
 		private TiposDeUsuarios TipoDeUsuario;
 		private boolean Estado;
@@ -24,7 +25,7 @@ public class Usuarios {
    }
 		
    
-   public Usuarios(int IdUsuario, int Dni, String Cuil, String Nombre, String Apellido, Timestamp FechaNacimiento, String Email, String NombreUsuario,String Contraseña,Generos Genero,TiposDeUsuarios TipoDeUsuario,Boolean Estado)
+   public Usuarios(int IdUsuario, String Dni, String Cuil, String Nombre, String Apellido, Date FechaNacimiento, String Email, String NombreUsuario,String Contrase�a,Generos Genero,TiposDeUsuarios TipoDeUsuario,Boolean Estado)
    {
 	   this.IdUsuario=IdUsuario;
 	   this.Dni= Dni;
@@ -34,7 +35,7 @@ public class Usuarios {
 	   this.FechaNacimiento= FechaNacimiento;
 	   this.Email= Email;
 	   this.NombreUsuario= NombreUsuario;
-	   this.Contraseña= Contraseña;
+	   this.Contrase�a= Contrase�a;
 	   this.Genero= Genero;
 	   this.TipoDeUsuario= TipoDeUsuario;
 	   this.Estado= Estado;
@@ -44,7 +45,7 @@ public class Usuarios {
 		return IdUsuario;
 	}
 
-	public int getDni() {
+	public String getDni() {
 		return Dni;
 	}
 
@@ -60,7 +61,7 @@ public class Usuarios {
 		return Apellido;
 	}
 
-	public Timestamp getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return FechaNacimiento;
 	}
 
@@ -72,8 +73,8 @@ public class Usuarios {
 		return NombreUsuario;
 	}
 
-	public String getContraseña() {
-		return Contraseña;
+	public String getContrase�a() {
+		return Contrase�a;
 	}
 
 	public Generos getGenero() {
@@ -84,7 +85,7 @@ public class Usuarios {
 		return TipoDeUsuario;
 	}
 
-	public boolean isEstado() {
+	public boolean getEstado() {
 		return Estado;
 	}
 
@@ -92,7 +93,7 @@ public class Usuarios {
 		IdUsuario = idUsuario;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(String dni) {
 		Dni = dni;
 	}
 
@@ -108,7 +109,7 @@ public class Usuarios {
 		Apellido = apellido;
 	}
 
-	public void setFechaNacimiento(Timestamp fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		FechaNacimiento = fechaNacimiento;
 	}
 
@@ -120,8 +121,8 @@ public class Usuarios {
 		NombreUsuario = nombreUsuario;
 	}
 	
-	public void setContraseña(String contraseña) {
-		Contraseña = contraseña;
+	public void setContrase�a(String contrase�a) {
+		Contrase�a = contrase�a;
 	}
 
 	public void setGenero(Generos genero) {
@@ -141,7 +142,7 @@ public class Usuarios {
 public String toString() {
 	return "Usuarios [IdUsuario=" + IdUsuario + ", Dni=" + Dni + ", Cuil=" + Cuil + ", Nombre=" + Nombre
 			+ ", Apellido=" + Apellido + ", FechaNacimiento=" + FechaNacimiento + ", Email=" + Email
-			+ ", NombreUsuario=" + NombreUsuario + ", Contraseña=" + Contraseña + ", Genero=" + Genero
+			+ ", NombreUsuario=" + NombreUsuario + ", Contraseña=" + Contrase�a + ", Genero=" + Genero
 			+ ", TipoDeUsuario=" + TipoDeUsuario + ", Estado=" + Estado + "]";
 }
 	
