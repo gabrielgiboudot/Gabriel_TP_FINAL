@@ -39,6 +39,19 @@ public class ServletUsuarios extends HttpServlet {
 	        rd.forward(request, response);
 		}
 		
+		if(request.getParameter("btnAgregar")!=null) {
+			
+			UsuariosNegImpl negocio = new UsuariosNegImpl();
+			Usuarios user = new Usuarios();
+			boolean filas = false;
+			filas = negocio.insertar(user);
+			
+			request.setAttribute("insert",filas);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/ABMclientes.jsp");   
+	        rd.forward(request, response);
+		}
+		
 	}
 
 }

@@ -13,8 +13,11 @@
 <link rel="shortcut icon" href="https://i.ibb.co/wcwqp98/banco.png">
 
 <!--Bootstrap-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
 <!--Estilos propios-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Estilos/AMBclientes.css" />
 
@@ -183,10 +186,28 @@
 
 
      <div class="modal fade bd-example-modal-lg" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <form method= "post" action="ServletUsuarios">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel3">Agregar cliente</h5>
+                    
+                    <%! boolean filas; %>
+                    
+                    <%
+                	if(request.getAttribute("insert")!=null)
+                	{
+                		filas = Boolean.parseBoolean(request.getAttribute("insert").toString());
+                	}	
+                    %>
+                    
+                    <%if(filas == true)
+                    { %>
+                    	<h5 class="modal-title" id="staticBackdropLabel3">Usuario agregado con exito.</h5>
+                  <%} else{ %>
+                  		<h5 class="modal-title" id="staticBackdropLabel3">Error al agregar usuario.</h5>
+                  <%} %>
+                		
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -216,11 +237,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input ID="btnAgregar" class="btn btn-primary col text-center" type="submit" value= "Agregar" name="btnAgregar">
+                    <input class="btn btn-primary col text-center" type="submit" value= "Agregar" name="btnAgregar">
+                </div>
                 </div>
             </div>
+            </form>
         </div>
-    </div>
+    
 
  
     <div class="modal fade bd-example-modal-sm" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -289,9 +312,5 @@
         </div>
     </footer>
     
-    <!-- bootstraps -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
 </body>
 </html>
