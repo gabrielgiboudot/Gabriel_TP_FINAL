@@ -156,14 +156,15 @@ public class Usuarios {
 	public void setDireccion(String direccion) {
 		Direccion = direccion;
 	}
-		
 
-@Override
-public String toString() {
-	return "Usuarios [IdUsuario=" + IdUsuario + ", Dni=" + Dni + ", Cuil=" + Cuil + ", Nombre=" + Nombre
-			+ ", Apellido=" + Apellido + ", FechaNacimiento=" + FechaNacimiento + ", Email=" + Email
-			+ ", NombreUsuario=" + NombreUsuario + ", ContraseÃ±a=" + Contraseña + ", Genero=" + Genero
-			+ ", TipoDeUsuario=" + TipoDeUsuario + ", Estado=" + Estado +"]";
-		}
-	
+
+	@Override
+	public String toString() {
+		return "Usuarios [IdUsuario=" + IdUsuario + ", Dni=" + Dni + ", Cuil=" + Cuil + ", Nombre=" + Nombre
+				+ ", Apellido=" + Apellido + ", FechaNacimiento=" + FechaNacimiento + ", Email=" + Email
+				+ ", NombreUsuario=" + NombreUsuario + ", Contraseña=" + Contraseña + ", Genero=" + Genero
+				+ ", TipoDeUsuario=" + TipoDeUsuario + ", NumeroDeTelefono=" + NumeroDeTelefono + ", Direccion="
+				+ Direccion + ", Estado=" + Estado + "]";
+	}
+		
 }

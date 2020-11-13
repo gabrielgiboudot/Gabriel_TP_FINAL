@@ -1,12 +1,13 @@
 package entidad;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Movimientos {
 
 	private int IdMovimiento;
 	private Usuarios Usuario;
-	private Timestamp Fecha;
+	private Date Fecha;
 	private String Detalle;
 	private float Importe;
 	private TiposDeMovimientos TipoDeMovimiento;
@@ -31,7 +32,7 @@ public class Movimientos {
 		return IdMovimiento;
 	}
 
-	public Timestamp getFecha() {
+	public Date getFecha() {
 		return Fecha;
 	}
 
@@ -51,7 +52,7 @@ public class Movimientos {
 		IdMovimiento = idMovimiento;
 	}
 
-	public void setFecha(Timestamp fecha) {
+	public void setFecha(Date fecha) {
 		Fecha = fecha;
 	}
 
@@ -73,12 +74,14 @@ public class Movimientos {
 
 	public void setUsuario(Usuarios usuario) {
 		Usuario = usuario;
+	}
+
+	@Override
+	public String toString() {
+		return "Movimientos [IdMovimiento=" + IdMovimiento + ", Usuario=" + Usuario + ", Fecha=" + Fecha + ", Detalle="
+				+ Detalle + ", Importe=" + Importe + ", TipoDeMovimiento=" + TipoDeMovimiento + "]";
 	}	
 
 	
-	@Override
-	public String toString() {
-		return "Movimientos [IdMovimiento=" + IdMovimiento + ", Fecha=" + Fecha + ", Detalle=" + Detalle + ", Importe="
-				+ Importe + ", TipoDeMovimiento=" + TipoDeMovimiento + "]";
-	}
+	
 }

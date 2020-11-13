@@ -1,12 +1,13 @@
 package entidad;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Cuentas {
 
 	private int NroDeCuenta;
 	private TipoDeCuentas TipoDeCuenta;
-	private Timestamp FechaCreacion;
+	private Date FechaCreacion;
 	private String Cbu;
 	private float Saldo;
 	private Usuarios Usuario;
@@ -49,12 +50,12 @@ public class Cuentas {
 	}
 
 
-	public Timestamp getFechaCreacion() {
+	public Date getFechaCreacion() {
 		return FechaCreacion;
 	}
 
 
-	public void setFechaCreacion(Timestamp fechaCreacion) {
+	public void setFechaCreacion(Date fechaCreacion) {
 		FechaCreacion = fechaCreacion;
 	}
 
