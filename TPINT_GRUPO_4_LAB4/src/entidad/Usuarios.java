@@ -16,6 +16,8 @@ public class Usuarios {
 		private String Contraseña;
 		private Generos Genero;
 		private TiposDeUsuarios TipoDeUsuario;
+		private String NumeroDeTelefono;
+		private String Direccion; 
 		private boolean Estado;
 		
 
@@ -25,7 +27,7 @@ public class Usuarios {
    }
 		
    
-   public Usuarios(int IdUsuario, String Dni, String Cuil, String Nombre, String Apellido, Date FechaNacimiento, String Email, String NombreUsuario,String Contraseña,Generos Genero,TiposDeUsuarios TipoDeUsuario,Boolean Estado)
+   public Usuarios(int IdUsuario, String Dni, String Cuil, String Nombre, String Apellido, Date FechaNacimiento, String Email, String NombreUsuario,String Contraseña,Generos Genero,TiposDeUsuarios TipoDeUsuario,String NumeroDeTelefono,String Direccion,Boolean Estado)
    {
 	   this.IdUsuario=IdUsuario;
 	   this.Dni= Dni;
@@ -38,6 +40,8 @@ public class Usuarios {
 	   this.Contraseña= Contraseña;
 	   this.Genero= Genero;
 	   this.TipoDeUsuario= TipoDeUsuario;
+	   this.NumeroDeTelefono = NumeroDeTelefono;
+	   this.Direccion = Direccion;
 	   this.Estado= Estado;
    }
 		
@@ -136,6 +140,22 @@ public class Usuarios {
 	public void setEstado(boolean estado) {
 		Estado = estado;
 	}
+	
+	public String getNumeroDeTelefono() {
+		return NumeroDeTelefono;
+	}
+
+	public String getDireccion() {
+		return Direccion;
+	}
+
+	public void setNumeroDeTelefono(String numeroDeTelefono) {
+		NumeroDeTelefono = numeroDeTelefono;
+	}
+
+	public void setDireccion(String direccion) {
+		Direccion = direccion;
+	}
 		
 
 @Override
@@ -143,7 +163,7 @@ public String toString() {
 	return "Usuarios [IdUsuario=" + IdUsuario + ", Dni=" + Dni + ", Cuil=" + Cuil + ", Nombre=" + Nombre
 			+ ", Apellido=" + Apellido + ", FechaNacimiento=" + FechaNacimiento + ", Email=" + Email
 			+ ", NombreUsuario=" + NombreUsuario + ", ContraseÃ±a=" + Contraseña + ", Genero=" + Genero
-			+ ", TipoDeUsuario=" + TipoDeUsuario + ", Estado=" + Estado + "]";
-}
+			+ ", TipoDeUsuario=" + TipoDeUsuario + ", Estado=" + Estado +"]";
+		}
 	
 }

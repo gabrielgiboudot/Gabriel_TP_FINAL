@@ -9,6 +9,7 @@ public class Cuentas {
 	private Timestamp FechaCreacion;
 	private String Cbu;
 	private float Saldo;
+	private Usuarios Usuario;
 	
 	
 	public Cuentas()
@@ -16,13 +17,14 @@ public class Cuentas {
 		
 	}
 	
-	public Cuentas ( int NroDeCuenta, TipoDeCuentas TipoDeCuenta,Timestamp FechaCreacion, String Cbu, float Saldo )
+	public Cuentas ( int NroDeCuenta, TipoDeCuentas TipoDeCuenta,Timestamp FechaCreacion, String Cbu, float Saldo ,Usuarios Usuario)
 	{
 		this.TipoDeCuenta = TipoDeCuenta;
 		this.NroDeCuenta = NroDeCuenta;
 		this.FechaCreacion= FechaCreacion;
 		this.Cbu= Cbu;
 		this.Saldo= Saldo;
+		this.Usuario= Usuario;
 		
 	}
 
@@ -75,7 +77,24 @@ public class Cuentas {
 	public void setSaldo(float saldo) {
 		Saldo = saldo;
 	}
+	public TipoDeCuentas getTipoDeCuenta() {
+		return TipoDeCuenta;
+	}
+	public Usuarios getUsuario() {
+		return Usuario;
+	}
 
+	public void setTipoDeCuenta(TipoDeCuentas tipoDeCuenta) {
+		TipoDeCuenta = tipoDeCuenta;
+	}
+
+	public void setUsuario(Usuarios usuario) {
+		Usuario = usuario;
+	}	
+	
+	
+	
+	
 	
 	@Override
 	public String toString() {

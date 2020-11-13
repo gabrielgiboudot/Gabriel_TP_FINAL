@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class Movimientos {
 
 	private int IdMovimiento;
+	private Usuarios Usuario;
 	private Timestamp Fecha;
 	private String Detalle;
 	private float Importe;
@@ -15,9 +16,10 @@ public class Movimientos {
 		
 	}
 	
-	public Movimientos(int IdMovimiento, Timestamp Fecha, String Detalle, float Importe, TiposDeMovimientos TipoDeMovimiento)
+	public Movimientos(int IdMovimiento,Usuarios Usuario ,Timestamp Fecha, String Detalle, float Importe, TiposDeMovimientos TipoDeMovimiento)
 	{
 		this.IdMovimiento = IdMovimiento;
+		this.Usuario=Usuario;
 		this.Fecha= Fecha;
 		this.Detalle= Detalle;
 		this.Importe = Importe;
@@ -64,7 +66,15 @@ public class Movimientos {
 	public void setTipoDeMovimiento(TiposDeMovimientos tipoDeMovimiento) {
 		TipoDeMovimiento = tipoDeMovimiento;
 	}
-	
+
+	public Usuarios getUsuario() {
+		return Usuario;
+	}
+
+	public void setUsuario(Usuarios usuario) {
+		Usuario = usuario;
+	}	
+
 	
 	@Override
 	public String toString() {

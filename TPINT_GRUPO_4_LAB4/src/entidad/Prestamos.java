@@ -11,13 +11,15 @@ public class Prestamos {
 	private int PlazoDePago;
 	private float ValorCuotaMensual;
 	private int CantidadDeCuotas;
+	private Usuarios Usuario;
+	private EstadosDePrestamo EstadoPrestamo;
 	
 	public Prestamos()
 	{
 		
 	}
 	
-	public Prestamos(int IdPrestamo, Timestamp Fecha, float ImporteConIntereses, float ImporteSolicitado, int PlazoDePago, float ValorCuotaMensual,int CantidadDeCuotas)
+	public Prestamos(int IdPrestamo, Timestamp Fecha, float ImporteConIntereses, float ImporteSolicitado, int PlazoDePago, float ValorCuotaMensual,int CantidadDeCuotas,Usuarios Usuario,EstadosDePrestamo EstadoPrestamo)
 	{
 		this.IdPrestamo= IdPrestamo;
 		this.Fecha= Fecha;
@@ -26,7 +28,8 @@ public class Prestamos {
 		this.PlazoDePago = PlazoDePago;
 		this.ValorCuotaMensual= ValorCuotaMensual;
 		this.CantidadDeCuotas= CantidadDeCuotas;
-		
+		this.Usuario = Usuario;
+		this.EstadoPrestamo= EstadoPrestamo;
 	}
 
 
@@ -87,6 +90,29 @@ public class Prestamos {
 	}
 	
 
+	public Usuarios getUsuario() {
+		return Usuario;
+	}
+
+	public EstadosDePrestamo getEstadoPrestamo() {
+		return EstadoPrestamo;
+	}
+
+
+	public void setUsuario(Usuarios usuario) {
+		Usuario = usuario;
+	}
+
+	public void setEstadoPrestamo(EstadosDePrestamo estadoPrestamo) {
+		EstadoPrestamo = estadoPrestamo;
+	}
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Prestamos [IdPrestamo=" + IdPrestamo + ", Fecha=" + Fecha + ", ImporteConIntereses="
