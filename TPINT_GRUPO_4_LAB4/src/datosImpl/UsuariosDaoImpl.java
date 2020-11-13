@@ -3,7 +3,7 @@ package datosImpl;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.sql.Date;
 
 import datos.UsuariosDao;
 import entidad.Usuarios;
@@ -135,13 +135,13 @@ public class UsuariosDaoImpl implements UsuariosDao {
 		
 		cn= new Conexion();
 		cn.Open();
-		
-		String query= "INSERT INTO direcciones (DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contraseña,IdGenero,ESTADO,IdTipoDeUsuario) VALUES ('"+usuario.getDni()+"', '"+usuario.getCuil()+"', '"+usuario.getNombre()+"', '"+usuario.getApellido()+"', '"+usuario.getFechaNacimiento()+"', '"+usuario.getEmail()+"', '"+usuario.getNombreUsuario()+"', '"+usuario.getContraseña()+"', '"+usuario.getGenero().getIdGenero()+"','"+usuario.getEstado()+"', '"+usuario.getTipoDeUsuario().getIdTipoDeUsuario()+"');";
+		java.sql.Date date2 = new java.sql.Date(usuario.getFechaNacimiento().getTime());
+		String query= "INSERT INTO Usuarios (DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contraseña,IdGenero,ESTADO,IdTipoDeUsuario) VALUES ('"+usuario.getDni()+"', '"+usuario.getCuil()+"', '"+usuario.getNombre()+"', '"+usuario.getApellido()+"', '"+date2+"', '"+usuario.getEmail()+"', '"+usuario.getNombreUsuario()+"', '"+usuario.getContraseña()+"', '"+usuario.getGenero().getIdGenero()+"',"+usuario.getEstado()+", '"+usuario.getTipoDeUsuario().getIdTipoDeUsuario()+"');";
 		try {
 			estado= cn.execute(query);
 			
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		finally
 		{

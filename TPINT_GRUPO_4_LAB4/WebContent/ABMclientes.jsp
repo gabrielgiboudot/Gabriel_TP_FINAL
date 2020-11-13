@@ -215,24 +215,24 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <h5>Dni</h5>
-                        <input type="text" ID="DNI"  class="form-control" onkeypress="javascript:return solonumeros(event)"  name="DNI" Style="margin: 5px;" placeholder="Dni">
+                        <input type="text"   class="form-control" onkeypress="javascript:return solonumeros(event)"  name="txtDNIA" required="required" Style="margin: 5px;" placeholder="Dni">
                         <h5>Cuil</h5>
-                        <input type="text" ID="CUIL" class="form-control" onkeypress="javascript:return solonumeros(event)"  name="CUIL" Style="margin: 5px;" placeholder="Cuil">
+                        <input type="text"  class="form-control" onkeypress="javascript:return solonumeros(event)"  name="txtCUILA" required="required"  Style="margin: 5px;" placeholder="Cuil">
                         <h5>Nombre</h5>
-                        <input type="text" ID="Nombre"  class="form-control" name="txtNombreA" Style="margin: 5px;" placeholder="Nombre">
+                        <input type="text"   class="form-control" name="txtNombreA" Style="margin: 5px;" required="required" placeholder="Nombre">
                         <h5>Apellido</h5>
-                        <input type="text" ID="Apellido"  class="form-control" name="txtApellidoA" Style="margin: 5px;" placeholder="Apellido">
+                        <input type="text"   class="form-control" name="txtApellidoA" Style="margin: 5px;" required="required" placeholder="Apellido">
                          <h5>Fecha de nacimiento</h5>
-                         <input type="date" ID="FechaNac"  class="form-control" name="txtFechaNacA"  min="1930-01-01" max="2002-01-01" class="form-control bg-white border-left-0 border-md" required="required" Style="margin: 5px;">
+                         <input type="date"   class="form-control" name="txtFechaNacA"  min="1930-01-01" max="2002-01-01" class="form-control bg-white border-left-0 border-md" required="required" Style="margin: 5px;">
                         <h5>Email</h5>
-                        <input type="text" ID="txtMailA"  class="form-control" name="txtEmailA" Style="margin: 5px;" placeholder="Email">
+                        <input type="text"   class="form-control" name="txtEmailA" Style="margin: 5px;" required="required" placeholder="Email">
                          <h5>Nombre de usuario</h5>
-                        <input type="text" ID="txtUsuario"  class="form-control" name="txtUsuarioA" Style="margin: 5px;" placeholder="Usuario">
+                        <input type="text"   class="form-control" name="txtUsuarioA" Style="margin: 5px;" required="required" placeholder="Usuario">
                         <h5>Genero</h5>
-                        <select id="txtSexo" name="txtGenero" class="form-control" required="required">
-                            <option value="Femenino" selected="">Femenino</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="na">Sin definir</option>
+                        <select  name="txtGenero" class="form-control">
+                            <option value=1 >Femenino</option>
+                            <option value=2 >Masculino</option>
+                            <option value=3 >Sin definir</option>
                         </select>
                     </div>
                 </div>
