@@ -1,13 +1,15 @@
--- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `tp_banco` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `tp_banco`;
+-- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
--- Host: localhost    Database: tp_banco
+-- Host: 127.0.0.1    Database: tp_banco
 -- ------------------------------------------------------
--- Server version	5.7.32-log
+-- Server version	5.1.73-community
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,16 +23,19 @@
 
 DROP TABLE IF EXISTS `cuentas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cuentas` (
   `NroDeCuenta` int(11) NOT NULL AUTO_INCREMENT,
   `IdTipoDeCuenta` int(11) NOT NULL,
-  `FechaCreacion` datetime DEFAULT NULL,
+  `FechaCreacion` date DEFAULT NULL,
   `CBU` varchar(50) NOT NULL,
-  `Saldo` decimal(9,4) NOT NULL DEFAULT '10000.0000',
+  `Saldo` decimal(10,0) NOT NULL DEFAULT '10000',
+  `IdUsuario` int(11) NOT NULL,
   PRIMARY KEY (`NroDeCuenta`,`IdTipoDeCuenta`),
   KEY `IdTipoDeCuenta` (`IdTipoDeCuenta`),
-  CONSTRAINT `cuentas_ibfk_1` FOREIGN KEY (`IdTipoDeCuenta`) REFERENCES `tiposdecuentas` (`IdTipoDeCuenta`)
+  KEY `IdUsuario` (`IdUsuario`),
+  CONSTRAINT `cuentas_ibfk_1` FOREIGN KEY (`IdTipoDeCuenta`) REFERENCES `tiposdecuentas` (`IdTipoDeCuenta`),
+  CONSTRAINT `cuentas_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -44,55 +49,26 @@ LOCK TABLES `cuentas` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `direcciones`
+-- Table structure for table `estadosdeprestamo`
 --
 
-DROP TABLE IF EXISTS `direcciones`;
+DROP TABLE IF EXISTS `estadosdeprestamo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `direcciones` (
-  `IdDireccion` int(11) NOT NULL AUTO_INCREMENT,
-  `Direccion` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`IdDireccion`)
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estadosdeprestamo` (
+  `IdEstado` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`IdEstado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `direcciones`
+-- Dumping data for table `estadosdeprestamo`
 --
 
-LOCK TABLES `direcciones` WRITE;
-/*!40000 ALTER TABLE `direcciones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `direcciones` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `direccionporcliente`
---
-
-DROP TABLE IF EXISTS `direccionporcliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `direccionporcliente` (
-  `IdUsuario` int(11) NOT NULL,
-  `IdDireccion` int(11) NOT NULL,
-  `IdLocalidad` int(11) NOT NULL,
-  PRIMARY KEY (`IdUsuario`,`IdDireccion`),
-  KEY `IdDireccion` (`IdDireccion`),
-  KEY `IdLocalidad` (`IdLocalidad`),
-  CONSTRAINT `direccionporcliente_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`),
-  CONSTRAINT `direccionporcliente_ibfk_2` FOREIGN KEY (`IdDireccion`) REFERENCES `direcciones` (`IdDireccion`),
-  CONSTRAINT `direccionporcliente_ibfk_3` FOREIGN KEY (`IdLocalidad`) REFERENCES `localidades` (`IdLocalidad`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `direccionporcliente`
---
-
-LOCK TABLES `direccionporcliente` WRITE;
-/*!40000 ALTER TABLE `direccionporcliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `direccionporcliente` ENABLE KEYS */;
+LOCK TABLES `estadosdeprestamo` WRITE;
+/*!40000 ALTER TABLE `estadosdeprestamo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estadosdeprestamo` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -101,7 +77,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `generos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `generos` (
   `IdGenero` int(11) NOT NULL AUTO_INCREMENT,
   `DescripcionGenero` varchar(50) DEFAULT NULL,
@@ -115,34 +91,8 @@ CREATE TABLE `generos` (
 
 LOCK TABLES `generos` WRITE;
 /*!40000 ALTER TABLE `generos` DISABLE KEYS */;
-INSERT INTO `generos` VALUES (1,'Masculino'),(2,'Femenino'),(3,'n/d');
+INSERT INTO `generos` VALUES (1,'Masculino'),(2,'Femenino'),(3,'n/a');
 /*!40000 ALTER TABLE `generos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `localidades`
---
-
-DROP TABLE IF EXISTS `localidades`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `localidades` (
-  `IdLocalidad` int(11) NOT NULL AUTO_INCREMENT,
-  `DescripcionLocalidad` varchar(50) DEFAULT NULL,
-  `IdProvincia` int(11) NOT NULL,
-  PRIMARY KEY (`IdLocalidad`),
-  KEY `IdProvincia` (`IdProvincia`),
-  CONSTRAINT `localidades_ibfk_1` FOREIGN KEY (`IdProvincia`) REFERENCES `provincias` (`IdProvincia`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `localidades`
---
-
-LOCK TABLES `localidades` WRITE;
-/*!40000 ALTER TABLE `localidades` DISABLE KEYS */;
-/*!40000 ALTER TABLE `localidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -151,16 +101,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `movimientos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `movimientos` (
   `IdMovimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `IdUsuario` int(11) NOT NULL,
   `Fecha` datetime NOT NULL,
   `Detalle` varchar(50) DEFAULT NULL,
   `Importe` decimal(5,4) NOT NULL,
   `IdTipoMovimiento` int(11) NOT NULL,
   PRIMARY KEY (`IdMovimiento`),
   KEY `IdTipoMovimiento` (`IdTipoMovimiento`),
-  CONSTRAINT `movimientos_ibfk_1` FOREIGN KEY (`IdTipoMovimiento`) REFERENCES `tiposdemovimientos` (`IdTipoMovimiento`)
+  KEY `IdUsuario` (`IdUsuario`),
+  CONSTRAINT `movimientos_ibfk_1` FOREIGN KEY (`IdTipoMovimiento`) REFERENCES `tiposdemovimientos` (`IdTipoMovimiento`),
+  CONSTRAINT `movimientos_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -174,49 +127,63 @@ LOCK TABLES `movimientos` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `provincias`
+-- Table structure for table `prestamoporcuota`
 --
 
-DROP TABLE IF EXISTS `provincias`;
+DROP TABLE IF EXISTS `prestamoporcuota`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `provincias` (
-  `IdProvincia` int(11) NOT NULL AUTO_INCREMENT,
-  `DescripcionProvincia` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`IdProvincia`)
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prestamoporcuota` (
+  `IdPrestamo` int(11) NOT NULL,
+  `NroCuota` tinyint(4) NOT NULL,
+  `FechaPago` date NOT NULL,
+  `Estado` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`IdPrestamo`,`NroCuota`),
+  CONSTRAINT `prestamoporcuota_ibfk_1` FOREIGN KEY (`IdPrestamo`) REFERENCES `prestamos` (`IdPrestamo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `provincias`
+-- Dumping data for table `prestamoporcuota`
 --
 
-LOCK TABLES `provincias` WRITE;
-/*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
+LOCK TABLES `prestamoporcuota` WRITE;
+/*!40000 ALTER TABLE `prestamoporcuota` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prestamoporcuota` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `telefonosporcliente`
+-- Table structure for table `prestamos`
 --
 
-DROP TABLE IF EXISTS `telefonosporcliente`;
+DROP TABLE IF EXISTS `prestamos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `telefonosporcliente` (
-  `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `NumeroDeTelefono` varchar(50) NOT NULL,
-  PRIMARY KEY (`IdUsuario`,`NumeroDeTelefono`)
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prestamos` (
+  `IdPrestamo` int(11) NOT NULL AUTO_INCREMENT,
+  `Fecha` date NOT NULL,
+  `ImporteConIntereses` decimal(5,4) NOT NULL,
+  `ImporteSolicitado` decimal(5,4) NOT NULL,
+  `PlazoDePago` int(11) NOT NULL,
+  `ValorCuotaMensual` decimal(5,4) NOT NULL,
+  `CantidadDeCuotas` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  `IdEstado` int(11) NOT NULL,
+  PRIMARY KEY (`IdPrestamo`),
+  KEY `IdUsuario` (`IdUsuario`),
+  KEY `IdEstado` (`IdEstado`),
+  CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`),
+  CONSTRAINT `prestamos_ibfk_2` FOREIGN KEY (`IdEstado`) REFERENCES `estadosdeprestamo` (`IdEstado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `telefonosporcliente`
+-- Dumping data for table `prestamos`
 --
 
-LOCK TABLES `telefonosporcliente` WRITE;
-/*!40000 ALTER TABLE `telefonosporcliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `telefonosporcliente` ENABLE KEYS */;
+LOCK TABLES `prestamos` WRITE;
+/*!40000 ALTER TABLE `prestamos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prestamos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -225,7 +192,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tiposdecuentas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tiposdecuentas` (
   `IdTipoDeCuenta` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(50) DEFAULT NULL,
@@ -248,7 +215,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tiposdemovimientos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tiposdemovimientos` (
   `IdTipoMovimiento` int(11) NOT NULL AUTO_INCREMENT,
   `DescripcionTipoDeMovimiento` varchar(50) DEFAULT NULL,
@@ -271,7 +238,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tiposdeusuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tiposdeusuarios` (
   `IdTipoDeUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `DescripcionTipoDeUsuario` varchar(50) DEFAULT NULL,
@@ -295,26 +262,30 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
   `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `DNI` varchar(11) NOT NULL,
-  `Cuil` varchar(50) DEFAULT NULL,
+  `Cuil` varchar(50) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Apellido` varchar(50) NOT NULL,
   `FechaNacimiento` date DEFAULT NULL,
-  `Email` varchar(50) DEFAULT NULL,
+  `Email` varchar(50) NOT NULL,
   `NombreUsuario` varchar(50) NOT NULL,
   `Contraseña` varchar(50) NOT NULL,
   `IdGenero` int(11) NOT NULL,
   `ESTADO` bit(1) NOT NULL,
   `IdTipoDeUsuario` int(11) NOT NULL,
+  `NumeroDeTelefono` varchar(50) DEFAULT NULL,
+  `Direccion` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdUsuario`),
+  UNIQUE KEY `NombreUsuario_UNIQUE` (`NombreUsuario`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`),
   KEY `IdGenero` (`IdGenero`),
   KEY `IdTipoDeUsuario` (`IdTipoDeUsuario`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`IdGenero`) REFERENCES `generos` (`IdGenero`),
   CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`IdTipoDeUsuario`) REFERENCES `tiposdeusuarios` (`IdTipoDeUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,7 +294,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'40145862','27401458620','Martin','Perez','1990-06-03','martinperez1990@gmail.com','martin1990','martin123',1,_binary '',1),(2,'41586932','20415869321','Juana','Morales','1992-12-01','moralesjuana92@hotmail.com','juana1992','juana123',2,_binary '',1),(3,'36958222','26369582224','Pablo','Argon','1984-02-15','pargon84@banco.com.ar','argon1984','argon123',1,_binary '',2),(4,'40586999','20405869991','Cristian','Castro','1998-06-03','cristiangabrielcastro@gmail.com','criss0076','cristian123',1,_binary '',2);
+INSERT INTO `usuarios` VALUES (1,'20586214','27205862141','Sofia','Marco','1990-12-01','sofiamarco1990@gmail.com','Sofia0076','sofia123',2,'',1,'1168545236','Formosa 123'),(2,'40586222','21405862224','Agustin','Juarez','1985-06-03','agusjuarez_1985@hotmail.com','Agus0076','agus123',1,'',1,'1186952499','Cordoba 148'),(3,'26985147','27269851477','Cristian','Castro','1998-06-03','cristiangabrielcastro@gmail.com','Criss0076','cris123',1,'',2,'1124589651','San Luis 285');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -336,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-11 22:28:33
+-- Dump completed on 2020-11-13 14:13:27
