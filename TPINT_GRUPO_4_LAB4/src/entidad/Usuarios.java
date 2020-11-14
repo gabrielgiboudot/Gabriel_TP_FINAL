@@ -13,7 +13,7 @@ public class Usuarios {
 		private Date FechaNacimiento;
 		private String Email;
 		private String NombreUsuario;
-		private String Contraseña;
+		private String ContraseÃ±a;
 		private Generos Genero;
 		private TiposDeUsuarios TipoDeUsuario;
 		private String NumeroDeTelefono;
@@ -27,7 +27,7 @@ public class Usuarios {
    }
 		
    
-   public Usuarios(int IdUsuario, String Dni, String Cuil, String Nombre, String Apellido, Date FechaNacimiento, String Email, String NombreUsuario,String Contraseña,Generos Genero,TiposDeUsuarios TipoDeUsuario,String NumeroDeTelefono,String Direccion,Boolean Estado)
+   public Usuarios(int IdUsuario, String Dni, String Cuil, String Nombre, String Apellido, Date FechaNacimiento, String Email, String NombreUsuario,String ContraseÃ±a,Generos Genero,TiposDeUsuarios TipoDeUsuario,String NumeroDeTelefono,String Direccion,Boolean Estado)
    {
 	   this.IdUsuario=IdUsuario;
 	   this.Dni= Dni;
@@ -37,7 +37,7 @@ public class Usuarios {
 	   this.FechaNacimiento= FechaNacimiento;
 	   this.Email= Email;
 	   this.NombreUsuario= NombreUsuario;
-	   this.Contraseña= Contraseña;
+	   this.ContraseÃ±a= ContraseÃ±a;
 	   this.Genero= Genero;
 	   this.TipoDeUsuario= TipoDeUsuario;
 	   this.NumeroDeTelefono = NumeroDeTelefono;
@@ -77,8 +77,8 @@ public class Usuarios {
 		return NombreUsuario;
 	}
 
-	public String getContraseña() {
-		return Contraseña;
+	public String getContraseÃ±a() {
+		return ContraseÃ±a;
 	}
 
 	public Generos getGenero() {
@@ -125,8 +125,8 @@ public class Usuarios {
 		NombreUsuario = nombreUsuario;
 	}
 	
-	public void setContraseña(String contraseña) {
-		Contraseña = contraseña;
+	public void setContraseÃ±a(String contraseÃ±a) {
+		ContraseÃ±a = contraseÃ±a;
 	}
 
 	public void setGenero(Generos genero) {
@@ -162,7 +162,7 @@ public class Usuarios {
 	public String toString() {
 		return "Usuarios [IdUsuario=" + IdUsuario + ", Dni=" + Dni + ", Cuil=" + Cuil + ", Nombre=" + Nombre
 				+ ", Apellido=" + Apellido + ", FechaNacimiento=" + FechaNacimiento + ", Email=" + Email
-				+ ", NombreUsuario=" + NombreUsuario + ", Contraseña=" + Contraseña + ", Genero=" + Genero
+				+ ", NombreUsuario=" + NombreUsuario + ", Contraseï¿½a=" + ContraseÃ±a + ", Genero=" + Genero
 				+ ", TipoDeUsuario=" + TipoDeUsuario + ", NumeroDeTelefono=" + NumeroDeTelefono + ", Direccion="
 				+ Direccion + ", Estado=" + Estado + "]";
 	}
