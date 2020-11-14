@@ -184,6 +184,56 @@ public class UsuariosDaoImpl implements UsuariosDao {
 		}
 		return estado;
 	}
+	@Override
+	public Usuarios obtenerUnoxUsuario(String Usuario, String Password) {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cn = new Conexion();
+		cn.Open();
+		
+		Usuarios user = new Usuarios();
+		Generos gen = new Generos();
+		TiposDeUsuarios TipoU = new TiposDeUsuarios();
+		
+		try {
+			ResultSet rs= cn.query("select IdUsuario,DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contraseña,U.IdGenero,ESTADO,U.IdTipoDeUsuario,G.DescripcionGenero,TU.DescripcionTipoDeUsuario from usuarios As U inner join generos As G ON G.IdGenero = U.IdGenero inner join tiposdeusuarios As TU ON TU.IdTipoDeUsuario = U.IdTipoDeUsuario where NombreUsuario = '"+Usuario+"' AND Contraseña = '"+Password+"'"); 
+			rs.next();
+			
+			user.setIdUsuario(rs.getInt("IdUsuario"));
+			user.setDni(rs.getString("DNI"));
+			user.setCuil(rs.getString("Cuil"));
+			user.setNombre(rs.getString("Nombre"));
+			user.setApellido(rs.getString("Apellido"));
+			user.setFechaNacimiento(rs.getDate("FechaNacimiento"));
+			user.setEmail(rs.getString("Email"));
+			user.setNombreUsuario(rs.getString("NombreUsuario"));
+			user.setContrase�a(rs.getString("Contraseña"));
+			gen.setIdGenero(rs.getInt(10));
+			gen.setDescripcionGenero(rs.getString(13));
+			user.setGenero(gen);
+			user.setEstado(rs.getBoolean("Estado"));
+			TipoU.setIdTipoDeUsuario(rs.getInt(12));
+			TipoU.setDescripcionTipoDeUsuario(rs.getString(14));
+			user.setTipoDeUsuario(TipoU);
+		
+		} catch (Exception e) {
+		
+		}
+		finally
+		{
+			
+			cn.close();
+		}
+		System.out.println("useruseruseruser " + user);
+		return user;
+		
+	}
 
 	@Override
 	public boolean borrar(int id) {
