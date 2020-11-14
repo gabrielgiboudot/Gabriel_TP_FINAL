@@ -37,7 +37,7 @@ public class CuentasPorUsuarioDaoImpl implements CuentasPorUsuarioDao {
 		try {
 			
 			 
-			ResultSet rs = cn.query("SELECT U.idUsuario, U.NombreUsuario, U.Nombre, U.Apellido, U.Email, U.DNI, U.Cuil, (SELECT COUNT(*),U.ESTADO From cuentas C WHERE C.IdUsuario = U.IdUsuario) AS Cantidad_Cuentas FROM usuarios U WHERE U.NombreUsuario like  '%"+Nombre+"%' AND U.Email LIKE '%"+Email+"%' AND U.DNI LIKE '%"+Dni+"%' AND U.Cuil LIKE '%"+Cuil+"%' ");
+			ResultSet rs = cn.query("SELECT U.idUsuario, U.NombreUsuario, U.Nombre, U.Apellido, U.Email, U.DNI, U.Cuil, (SELECT COUNT(*) From cuentas C WHERE C.IdUsuario = U.IdUsuario) AS Cantidad_Cuentas FROM usuarios U WHERE U.NombreUsuario like  '%"+Nombre+"%' AND U.Email LIKE '%"+Email+"%' AND U.DNI LIKE '%"+Dni+"%' AND U.Cuil LIKE '%"+Cuil+"%' ");
 			
 			while(rs.next())
 			{
@@ -55,7 +55,6 @@ public class CuentasPorUsuarioDaoImpl implements CuentasPorUsuarioDao {
 				User.setCuil(rs.getString("U.Cuil"));
 				User.setGenero(gen);
 				User.setTipoDeUsuario(TipoU);
-				User.setEstado(rs.getBoolean(9));
 				
 				
 				CU.setUsuario(User);
