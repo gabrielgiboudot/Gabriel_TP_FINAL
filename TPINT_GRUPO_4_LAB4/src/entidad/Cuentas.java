@@ -1,6 +1,6 @@
 package entidad;
 
-import java.sql.Timestamp;
+
 import java.util.Date;
 
 public class Cuentas {
@@ -18,7 +18,7 @@ public class Cuentas {
 		
 	}
 	
-	public Cuentas ( int NroDeCuenta, TipoDeCuentas TipoDeCuenta,Timestamp FechaCreacion, String Cbu, float Saldo ,Usuarios Usuario)
+	public Cuentas ( int NroDeCuenta, TipoDeCuentas TipoDeCuenta,Date FechaCreacion, String Cbu, float Saldo ,Usuarios Usuario)
 	{
 		this.TipoDeCuenta = TipoDeCuenta;
 		this.NroDeCuenta = NroDeCuenta;

@@ -1,3 +1,8 @@
+<%@page import="java.io.Console"%>
+<%@page import="entidad.Usuarios"%>
+<%@page import="entidad.Cuentas"%>
+<%@page import="entidad.CuentasPorUsuario"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -67,6 +72,7 @@
     <h1 style="text-align: center; padding-top: 150px;" class="font-italic text">Administración de cuentas</h1>
     <div class="container-fluid">
     <div class="footer-siempre-abajo" style="background-color:white">
+      <form method="post" action="ServletCuentas">  
         <div class="row">
             <div class="col-12" style="padding: 10px; text-align: center;">
                 <div class="input-group" style="text-align: center;">
@@ -83,6 +89,7 @@
                 </div>
             </div>
         </div>
+          </form> 
         <div class="row">
             <div class="col-md-1 col-sm-4"></div>
             <div class="col-md-10 col-sm-4">
@@ -90,9 +97,10 @@
 			<table class="table table-dark">
 			  <thead>
 			    <tr>
-			       <th scope="col"></th>
-			       <th scope="col"></th>
+			     <th scope="col"></th>
+			      <th scope="col"></th>
 			      <th scope="col">ID</th>
+			      <th scope="col">Usuario</th>
 			      <th scope="col">Nombre</th>
 			      <th scope="col">Apellido</th>
 			      <th scope="col">Email</th>
@@ -102,38 +110,38 @@
 			    </tr>
 			  </thead>
 			  <tbody>
+
+<% 
+	ArrayList<CuentasPorUsuario> listaCu = null;
+	if(request.getAttribute("BusquedaCu")!=null)
+	{
+		listaCu = (ArrayList<CuentasPorUsuario>)request.getAttribute("BusquedaCu");
+	}
+
+%>			  
+<%	
+	
+	if(listaCu!=null)
+	for(CuentasPorUsuario cu : listaCu)
+  	{
+		%>
 			    <tr>
+			    <form method="post" action="ServletCuentas">
 			      <td><input HeaderText="Borrado"  class="btn btn-primary" type="submit" name= "btnListar" Onclick="abrir()" id="btnListar" value="Listar" ></td>
-			      <td><input class="btn btn-primary" type="submit" name= "btnAgregar" id="btnAgregar" Onclick="Agregar()" value="Agregar" ></td>      <th scope="row">1</th>
-			      <td>Martin</td>
-			      <td>Argañaraz</td>
-			      <td>MartinArg98@gmail.com</td>
-			      <td>40558512</td>
-			      <td>21405585120</td>
-			      <td>1</td>
-			    </tr>
-			     <tr>
-			      <td><input class="btn btn-primary" type="submit" name= "btnListar" id="btnListar" Onclick="abrir()" value="Listar" ></td>
-			      <td><input class="btn btn-primary" type="submit" name= "btnAgregar" id="btnAgregar" Onclick="Agregar()" value="Agregar" ></td>      <th scope="row">2</th>
-			      <td>Ana</td>
-			      <td>Perez</td>
-			      <td>Anaperez12@gmail.com</td>
-			      <td>40558512</td>
-			      <td>21405585120</td>
-			      <td>0</td>
-			    </tr>
-			     <tr>
-			      <td><input class="btn btn-primary" type="submit" name= "btnListar" id=btnListar  Onclick="abrir()" value="Listar" ></td>
-			      <td><input class="btn btn-primary" type="submit" name= "btnAgregar" id="btnAgregar" Onclick="Agregar()" value="Agregar" ></td>
-			      <th scope="row">3</th>
-			      <td>Luciano</td>
-			      <td>Souza</td>
-			      <td>lu_souza76@gmail.com</td>
-			      <td>40558512</td>
-			      <td>21405585120</td>
-			      <td>3</td>
-			    </tr>
+			      <td><input class="btn btn-primary" type="submit" name= "btnAgregar" id="btnAgregar" Onclick="Agregar()" value="Agregar" ></td>      
+			      <th scope="row"><%=cu.getUsuario().getIdUsuario() %> <input type="hidden" name="idUsuario" value="<%=cu.getUsuario().getIdUsuario() %>">   </th> 
+			      <td><%=cu.getUsuario().getNombreUsuario() %></td>
+			      <td><%=cu.getUsuario().getNombre() %></td>
+			      <td><%=cu.getUsuario().getApellido() %></td>
+			      <td><%=cu.getUsuario().getEmail() %></td>
+			      <td><%=cu.getUsuario().getDni() %></td>
+			      <td><%=cu.getUsuario().getCuil()%></td>
+			      <td><%=cu.getCantidadCuentas() %></td>
+			   </form>  
+
+  				</tr>
 			  </tbody>
+<%}%>
 			</table>
             </div>
             <div class="col-md-1 col-sm-4"></div>
@@ -207,28 +215,43 @@
 				      <th scope="col">Nro. Cuenta</th>
 				    </tr>
 				  </thead>
-				  <tbody>
+				  
+<%
+		
+                 if(request.getAttribute("listaC")!=null){%>
+                    <script type="text/javascript">
+                 $(function(){
+                  $('#modalListar').modal();
+                     });
+                </script>
+                  <%}
+%>               
+     
+<% 
+	ArrayList<Cuentas> CuentasUsuario= null;
+	if(request.getAttribute("listaC")!=null)
+	{
+		CuentasUsuario = (ArrayList<Cuentas>)request.getAttribute("listaC");
+	}
+%>     				  
+			  
+				  
+<%
+	if(CuentasUsuario!=null)
+	{
+		for(Cuentas c : CuentasUsuario)	
+		{
+%>
+					<tbody>
 				    <tr>
-					  <th scope="row">1</th>
-				      <td>Argañaraz</td>
-				      <td>40558512</td>
-				      <td>Caja de ahorro</td>
-				      <td>0340558512/4</td>
+					  <th scope="row"><%=c.getUsuario().getIdUsuario() %></th>
+				      <td><%=c.getUsuario().getApellido() %></td>
+				      <td><%=c.getUsuario().getCuil() %></td>
+				      <td><%=c.getTipoDeCuenta().getDescripcion() %></td>
+				      <td><%=c.getNroDeCuenta() %></td>
 				    </tr>
-				     <tr>
-				     <th scope="row">2</th>
-				      <td>Perez</td>
-				      <td>40558512</td>
-				      <td>Caja de ahorro</td>
-				      <td>0240558512/4</td>
-				    </tr>
-				     <tr>
-				      <th scope="row">3</th>
-				      <td>Souza</td>
-				      <td>40558512</td>
-				      <td>Cuenta corriente</td>
-				      <td>0140558512/4</td>
-				    </tr>
+<%} 
+}%>
 				  </tbody>
 				</table>
                 </div>

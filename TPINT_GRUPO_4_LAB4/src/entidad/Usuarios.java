@@ -162,7 +162,7 @@ public class Usuarios {
 	public String toString() {
 		return "Usuarios [IdUsuario=" + IdUsuario + ", Dni=" + Dni + ", Cuil=" + Cuil + ", Nombre=" + Nombre
 				+ ", Apellido=" + Apellido + ", FechaNacimiento=" + FechaNacimiento + ", Email=" + Email
-				+ ", NombreUsuario=" + NombreUsuario + ", Contraseña=" + Contraseña + ", Genero=" + Genero
+				+ ", NombreUsuario=" + NombreUsuario + ", Contraseï¿½a=" + Contraseña + ", Genero=" + Genero
 				+ ", TipoDeUsuario=" + TipoDeUsuario + ", NumeroDeTelefono=" + NumeroDeTelefono + ", Direccion="
 				+ Direccion + ", Estado=" + Estado + "]";
 	}

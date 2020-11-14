@@ -9,7 +9,11 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.22.jar">
+=======
+	<classpathentry kind="lib" path="C:/Program Files/MySQL/mysql-connector-java-8.0.20/mysql-connector-java-8.0.20.jar">
+>>>>>>> d6e291f41f8032090f3c8cb5d5c4b61eb3a7e7f5
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

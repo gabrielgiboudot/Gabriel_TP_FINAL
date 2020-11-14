@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,6 +19,7 @@ import entidad.Usuarios;
 import negocioImpl.UsuariosNegImpl;
 import entidad.Generos;
 import entidad.TiposDeUsuarios;
+import datosImpl.UsuariosDaoImpl;
 
 @WebServlet("/ServletUsuarios")
 public class ServletUsuarios extends HttpServlet {
@@ -153,6 +155,7 @@ if(request.getParameter("btnAgregar")!=null) {
 			RequestDispatcher rd = request.getRequestDispatcher("/ABMclientes.jsp");   
 	        rd.forward(request, response);
 		}
+<<<<<<< HEAD
 
 		if(request.getParameter("btnEliminar")!=null) {
 			
@@ -196,6 +199,38 @@ if(request.getParameter("btnAgregar")!=null) {
 			
 		}
 		
+=======
+HttpSession session = request.getSession();
+//Ingresar
+if (request.getParameter("btnIngresar") != null) {
+	// Entra por haber echo click en el hyperlink mostrar usuarios
+	UsuariosDaoImpl UsuarioDao = new UsuariosDaoImpl();
+	Usuarios usuario = UsuarioDao.obtenerUnoxUsuario(request.getParameter("txtUsuario"),
+			request.getParameter("txtClave"));
+	System.out.println(usuario);
+	System.out.println("usuario txt " + request.getParameter("txtUsuario"));
+	System.out.println("clave TXT " + request.getParameter("txtClave"));
+	System.out.println("usuario.getIdUsuario() " + usuario.getIdUsuario());
+	session.setAttribute("Usuario2", usuario);
+	if (usuario.getIdUsuario() != 0) {
+		session.setAttribute("Session_user", usuario.getNombreUsuario());
+		session.setAttribute("Session_type", usuario.getTipoDeUsuario().getDescripcionTipoDeUsuario());
+		session.setAttribute("Session_Id", usuario.getIdUsuario());
+		// session.setAttribute("Session_user", request.getParameter("txtUsuario"));
+		if (usuario.getTipoDeUsuario().getIdTipoDeUsuario() == 1) {
+			request.getRequestDispatcher("PrincipalADM.jsp").forward(request, response);
+		} else if (usuario.getTipoDeUsuario().getIdTipoDeUsuario() != 1) {
+			request.getRequestDispatcher("PrincipalCLI.jsp").forward(request, response);
+
+		}
+	} else {	
+>>>>>>> d6e291f41f8032090f3c8cb5d5c4b61eb3a7e7f5
 		
+		  int error=1;
+		  request.setAttribute("UsuarioYaExiste", error);
+		  request.getRequestDispatcher("Login.jsp").forward(request, response); 
+
+	}
+}
 	}
 }
