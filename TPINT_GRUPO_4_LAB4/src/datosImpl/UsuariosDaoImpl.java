@@ -34,7 +34,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 		List<Usuarios> list = new ArrayList<Usuarios>();
 		try {
 			
-			ResultSet rs = cn.query("select IdUsuario,DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contraseña,U.IdGenero,ESTADO,U.IdTipoDeUsuario,G.DescripcionGenero,TU.DescripcionTipoDeUsuario,NumeroDeTelefono,Direccion from usuarios As U inner join generos As G ON G.IdGenero = U.IdGenero inner join tiposdeusuarios As TU ON TU.IdTipoDeUsuario = U.IdTipoDeUsuario");
+			ResultSet rs = cn.query("select IdUsuario,DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contrase�a,U.IdGenero,ESTADO,U.IdTipoDeUsuario,G.DescripcionGenero,TU.DescripcionTipoDeUsuario,NumeroDeTelefono,Direccion from usuarios As U inner join generos As G ON G.IdGenero = U.IdGenero inner join tiposdeusuarios As TU ON TU.IdTipoDeUsuario = U.IdTipoDeUsuario");
 			while(rs.next())
 			{
 				Usuarios user = new Usuarios();
@@ -49,7 +49,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 				user.setFechaNacimiento(rs.getDate("FechaNacimiento"));
 				user.setEmail(rs.getString("Email"));
 				user.setNombreUsuario(rs.getString("NombreUsuario"));
-				user.setContraseña(rs.getString("Contraseña"));
+				user.setContrase�a(rs.getString("Contraseña"));
 				gen.setIdGenero(rs.getInt(10));
 				gen.setDescripcionGenero(rs.getString(13));
 				user.setGenero(gen);
@@ -92,7 +92,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 		TiposDeUsuarios TipoU = new TiposDeUsuarios();
 		
 		try {
-			ResultSet rs= cn.query("select IdUsuario,DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contraseña,U.IdGenero,ESTADO,U.IdTipoDeUsuario,G.DescripcionGenero,TU.DescripcionTipoDeUsuario,NumeroDeTelefono,Direccion from usuarios As U inner join generos As G ON G.IdGenero = U.IdGenero inner join tiposdeusuarios As TU ON TU.IdTipoDeUsuario = U.IdTipoDeUsuario where IdUsuario = "+id); 
+			ResultSet rs= cn.query("select IdUsuario,DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contrase�a,U.IdGenero,ESTADO,U.IdTipoDeUsuario,G.DescripcionGenero,TU.DescripcionTipoDeUsuario,NumeroDeTelefono,Direccion from usuarios As U inner join generos As G ON G.IdGenero = U.IdGenero inner join tiposdeusuarios As TU ON TU.IdTipoDeUsuario = U.IdTipoDeUsuario where IdUsuario = "+id); 
 			rs.next();
 			
 			user.setIdUsuario(rs.getInt("IdUsuario"));
@@ -103,7 +103,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 			user.setFechaNacimiento(rs.getDate("FechaNacimiento"));
 			user.setEmail(rs.getString("Email"));
 			user.setNombreUsuario(rs.getString("NombreUsuario"));
-			user.setContraseña(rs.getString("Contraseña"));
+			user.setContrase�a(rs.getString("Contraseña"));
 			gen.setIdGenero(rs.getInt(10));
 			gen.setDescripcionGenero(rs.getString(13));
 			user.setGenero(gen);
@@ -140,7 +140,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 		cn= new Conexion();
 		cn.Open();
 		java.sql.Date date2 = new java.sql.Date(usuario.getFechaNacimiento().getTime());
-		String query= "INSERT INTO Usuarios (DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contraseña,IdGenero,ESTADO,IdTipoDeUsuario,NumeroDeTelefono,Direccion) VALUES ('"+usuario.getDni()+"', '"+usuario.getCuil()+"', '"+usuario.getNombre()+"', '"+usuario.getApellido()+"', '"+date2+"', '"+usuario.getEmail()+"', '"+usuario.getNombreUsuario()+"', '"+usuario.getContraseña()+"', '"+usuario.getGenero().getIdGenero()+"',"+usuario.getEstado()+", '"+usuario.getTipoDeUsuario().getIdTipoDeUsuario()+"',"+usuario.getNumeroDeTelefono()+", '"+usuario.getDireccion()+"');";
+		String query= "INSERT INTO Usuarios (DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contrase�a,IdGenero,ESTADO,IdTipoDeUsuario,NumeroDeTelefono,Direccion) VALUES ('"+usuario.getDni()+"', '"+usuario.getCuil()+"', '"+usuario.getNombre()+"', '"+usuario.getApellido()+"', '"+date2+"', '"+usuario.getEmail()+"', '"+usuario.getNombreUsuario()+"', '"+usuario.getContrase�a()+"', '"+usuario.getGenero().getIdGenero()+"',"+usuario.getEstado()+", '"+usuario.getTipoDeUsuario().getIdTipoDeUsuario()+"',"+usuario.getNumeroDeTelefono()+", '"+usuario.getDireccion()+"');";
 		try {
 			estado= cn.execute(query);
 			
@@ -170,7 +170,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 		cn= new Conexion();
 		cn.Open();
 		
-		String query= "UPDATE `tp_banco`.`usuarios` SET `DNI` = '"+usuario.getDni()+"', `Cuil` = '"+usuario.getCuil()+"', `Nombre` = '"+usuario.getNombre()+"', `Apellido` = '"+usuario.getApellido()+"', `FechaNacimiento` = '"+usuario.getFechaNacimiento()+"', `Email` = '"+usuario.getEmail()+"', `NombreUsuario` = '"+usuario.getNombreUsuario()+"', `Contraseña` = '"+usuario.getContraseña()+"', `IdGenero` = '"+usuario.getGenero().getIdGenero()+"', `ESTADO` = '"+usuario.getEstado()+"', `IdTipoDeUsuario` = '"+usuario.getTipoDeUsuario().getIdTipoDeUsuario()+"', `NumeroDeTelefono` = '"+usuario.getNumeroDeTelefono()+"', `Direccion` = '"+usuario.getDireccion()+"' WHERE (`IdUsuario` = '"+usuario.getIdUsuario()+"');";
+		String query= "UPDATE `tp_banco`.`usuarios` SET `DNI` = '"+usuario.getDni()+"', `Cuil` = '"+usuario.getCuil()+"', `Nombre` = '"+usuario.getNombre()+"', `Apellido` = '"+usuario.getApellido()+"', `FechaNacimiento` = '"+usuario.getFechaNacimiento()+"', `Email` = '"+usuario.getEmail()+"', `NombreUsuario` = '"+usuario.getNombreUsuario()+"', `Contraseña` = '"+usuario.getContrase�a()+"', `IdGenero` = '"+usuario.getGenero().getIdGenero()+"', `ESTADO` = '"+usuario.getEstado()+"', `IdTipoDeUsuario` = '"+usuario.getTipoDeUsuario().getIdTipoDeUsuario()+"', `NumeroDeTelefono` = '"+usuario.getNumeroDeTelefono()+"', `Direccion` = '"+usuario.getDireccion()+"' WHERE (`IdUsuario` = '"+usuario.getIdUsuario()+"');";
 		try {
 			estado= cn.execute(query);
 			
@@ -215,7 +215,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 			user.setFechaNacimiento(rs.getDate("FechaNacimiento"));
 			user.setEmail(rs.getString("Email"));
 			user.setNombreUsuario(rs.getString("NombreUsuario"));
-			user.setContraseña(rs.getString("Contraseña"));
+			user.setContrase�a(rs.getString("Contraseña"));
 			gen.setIdGenero(rs.getInt(10));
 			gen.setDescripcionGenero(rs.getString(13));
 			user.setGenero(gen);

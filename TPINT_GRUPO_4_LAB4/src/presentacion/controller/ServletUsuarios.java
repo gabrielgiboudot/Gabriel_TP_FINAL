@@ -117,7 +117,7 @@ if(request.getParameter("btnAgregar")!=null) {
 					error = 1;
 				}
 			
-			user.setContraseÃ±a("hola");
+			user.setContraseña("hola");
 			
 			t.setIdTipoDeUsuario(1);
 			
