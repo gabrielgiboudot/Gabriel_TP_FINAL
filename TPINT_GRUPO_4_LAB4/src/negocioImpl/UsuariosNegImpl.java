@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import datos.UsuariosDao;
 import datosImpl.UsuariosDaoImpl;
+import entidad.CuentasPorUsuario;
 import entidad.Usuarios;
 import negocio.UsuariosNeg;
 
@@ -58,5 +59,6 @@ public class UsuariosNegImpl implements UsuariosNeg{
 	public boolean editar_clave(Usuarios usuario) {
 		return userDao.editar_clave(usuario);
 	}
+
 
 }

@@ -121,22 +121,22 @@
     <div class="footer-siempre-abajo" style="background-color:white">
         <div class="row">
             <div class="col-12" style="padding: 10px; text-align: center;">
+            <form method="post" action="ServletUsuarios2" >
                 <div class="input-group" style="text-align: center;">
-                	<input type="text" ID="txtNombre"  class="form-control" name="txtUsuario" Style="margin: 5px;" placeholder="Usuario">
+                	<input type="text"   class="form-control" name="txtUsuario" Style="margin: 5px;" placeholder="Usuario">
                     <span class="input-group-addon"></span>
-                    <input type="text" ID="txtMail"  class="form-control" name="txtEmail" Style="margin: 5px;" placeholder="Email">
+                    <input type="text"   class="form-control" name="txtEmail" Style="margin: 5px;" placeholder="Email">
                 </div>
                 <div class="input-group" style="text-align: center;">
-                 	<input type="text" ID="txtDni"  class="form-control" name="txtDni" onkeypress="javascript:return solonumeros(event)" Style="margin: 5px; width: 100px;" placeholder="Dni">
-                    <input type="text" ID="txtCuil"  class="form-control" name="txtCuil" onkeypress="javascript:return solonumeros(event)" Style="margin: 5px; width: 100px;" placeholder="Cuil">
+                 	<input type="text"  class="form-control" name="txtDni" onkeypress="javascript:return solonumeros(event)" Style="margin: 5px; width: 100px;" placeholder="Dni">
+                    <input type="text"   class="form-control" name="txtCuil" onkeypress="javascript:return solonumeros(event)" Style="margin: 5px; width: 100px;" placeholder="Cuil">
                 </div>
                 <div class="col text-center">
-                 <form method="post" action="ServletUsuarios2" >
+                 
                	 <input class="btn btn-primary"  name="btnBuscar" type="submit" value="Buscar" CssClass="btn btn-primary mb-2" Style="text-align: center; width: 100px;">
                  <input class="btn btn-primary"  name="btnTodos" type="submit" value="Todos" CssClass="btn btn-primary mb-2" Style="text-align: center; width: 100px;">
-                 </form>
-                 
                 </div>
+                </form>
             </div>
         </div>
         <div class="row" style="overflow:auto; height:400px;">
@@ -163,6 +163,11 @@
 	if(request.getAttribute("AllUsers")!=null)
 	{
 		ListaUsuarios = (ArrayList<Usuarios>)request.getAttribute("AllUsers");
+	}else{
+		if(request.getAttribute("BusquedaCu")!= null){
+			ListaUsuarios = (ArrayList<Usuarios>)request.getAttribute("BusquedaCu");
+			System.out.println(ListaUsuarios);
+		}
 	}			
   %>
 	

@@ -1,3 +1,4 @@
+<%@page import = "entidad.Usuarios" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -47,8 +48,15 @@
 				</li>
 			</ul>
 		</div>
+		<%! Usuarios u = new Usuarios(); %>
 
-		<span id="perfil" class="navbar-text" style="padding: 10px"> <a
+		<span id="perfil" class="navbar-text" style="padding: 10px">
+		<%u= (Usuarios)request.getSession().getAttribute("Session_user");
+         	   System.out.println(u.getApellido()); %>
+         	   <%if(u.getApellido() != null){ %>
+      		 <label><%=u.getNombre()+" "+u.getApellido() %></label>
+      		 <%} %>
+		 <a
 			href="DatosPersonalesADM.jsp"> <img src="https://i.ibb.co/Xzbf1pS/usuario.png" />
 		</a> Perfil
 		</span> <span id="salir" class="navbar-text"> <a href="Login.jsp">

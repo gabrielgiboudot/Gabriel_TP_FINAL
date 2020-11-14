@@ -7,6 +7,7 @@ import java.sql.Date;
 
 import datos.UsuariosDao;
 import entidad.Usuarios;
+import entidad.CuentasPorUsuario;
 import entidad.Generos;
 import entidad.TiposDeUsuarios;
 
@@ -202,7 +203,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 		TiposDeUsuarios TipoU = new TiposDeUsuarios();
 		
 		try {
-			ResultSet rs= cn.query("select IdUsuario,DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,ContraseÃ±a,U.IdGenero,ESTADO,U.IdTipoDeUsuario,G.DescripcionGenero,TU.DescripcionTipoDeUsuario from usuarios As U inner join generos As G ON G.IdGenero = U.IdGenero inner join tiposdeusuarios As TU ON TU.IdTipoDeUsuario = U.IdTipoDeUsuario where NombreUsuario = '"+Usuario+"' AND ContraseÃ±a = '"+Password+"'"); 
+			ResultSet rs= cn.query("select IdUsuario,DNI,Cuil,Nombre,Apellido,FechaNacimiento,Email,NombreUsuario,Contraseña,U.IdGenero,ESTADO,U.IdTipoDeUsuario,G.DescripcionGenero,TU.DescripcionTipoDeUsuario from usuarios As U inner join generos As G ON G.IdGenero = U.IdGenero inner join tiposdeusuarios As TU ON TU.IdTipoDeUsuario = U.IdTipoDeUsuario where NombreUsuario = '"+Usuario+"' AND Contraseña = '"+Password+"'"); 
 			rs.next();
 			
 			user.setIdUsuario(rs.getInt("IdUsuario"));
@@ -213,7 +214,7 @@ public class UsuariosDaoImpl implements UsuariosDao {
 			user.setFechaNacimiento(rs.getDate("FechaNacimiento"));
 			user.setEmail(rs.getString("Email"));
 			user.setNombreUsuario(rs.getString("NombreUsuario"));
-			user.setContraseña(rs.getString("ContraseÃ±a"));
+			user.setContraseña(rs.getString("Contraseña"));
 			gen.setIdGenero(rs.getInt(10));
 			gen.setDescripcionGenero(rs.getString(13));
 			user.setGenero(gen);
@@ -331,4 +332,5 @@ public boolean cambiar_estado(int id) {
 		return estado;
 	}
 
+	
 }

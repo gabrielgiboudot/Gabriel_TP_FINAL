@@ -1,6 +1,8 @@
 package datos;
 
 import java.util.List;
+
+import entidad.CuentasPorUsuario;
 import entidad.Usuarios;
 
 public interface UsuariosDao {
@@ -13,4 +15,5 @@ public interface UsuariosDao {
 	public boolean cambiar_estado(int id);
 	public boolean editar_clave(Usuarios usuario);
 	public Usuarios obtenerUnoxUsuario(String Usuario, String Password);
+
 }

@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.DateFormat;
 import java.text.ParseException;
 import entidad.Usuarios;
+import negocioImpl.CuentasPorUsuarioNegImpl;
 import negocioImpl.UsuariosNegImpl;
+import entidad.CuentasPorUsuario;
 import entidad.Generos;
 import entidad.TiposDeUsuarios;
 
@@ -194,6 +196,44 @@ if(request.getParameter("btnAgregar")!=null) {
 			RequestDispatcher rd = request.getRequestDispatcher("/ABMclientes.jsp");
 	        rd.forward(request, response);
 			
+		}
+		
+		if(request.getParameter("btnBuscar")!= null) {
+			String nombreUsuario = "";
+			String Email = "";
+			String DNI = "";
+			String Cuil = "";
+			
+			if(request.getParameter("txtUsuario")!= null)
+			{
+		       nombreUsuario = request.getParameter("txtUsuario").toString();
+			}
+			
+			if(request.getParameter("txtEmail")!=null)
+			{
+				Email = request.getParameter("txtEmail").toString(); 
+			}
+			
+			if(request.getParameter("txtDni")!=null)
+			{
+				DNI = request.getParameter("txtDni").toString(); 
+			}
+			
+			if(request.getParameter("txtCuil")!=null)
+			{
+				Cuil = request.getParameter("txtCuil").toString(); 
+			}
+			
+			ArrayList<CuentasPorUsuario> listaCu= new ArrayList<CuentasPorUsuario>();
+			CuentasPorUsuarioNegImpl negocio = new CuentasPorUsuarioNegImpl();
+			listaCu = (ArrayList<CuentasPorUsuario>)negocio.ObtenerFiltro(nombreUsuario,Email,DNI,Cuil);
+			
+			
+			request.setAttribute("BusquedaCu", listaCu);
+			
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/ABMclientes.jsp");
+	        rd.forward(request, response);
 		}
 		
 		
