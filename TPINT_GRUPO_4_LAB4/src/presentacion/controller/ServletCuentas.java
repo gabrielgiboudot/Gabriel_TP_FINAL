@@ -72,6 +72,7 @@ public class ServletCuentas extends HttpServlet {
 			request.setAttribute("BusquedaCu", listaCu);
 			RequestDispatcher rd = request.getRequestDispatcher("/ABMCuentas.jsp");   
 	        rd.forward(request, response);
+	        return;
 		}
 
 		

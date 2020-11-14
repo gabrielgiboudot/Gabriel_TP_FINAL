@@ -2,13 +2,20 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <title>Bienvenido</title>
+
 <link rel="shortcut icon" href="https://i.ibb.co/wcwqp98/banco.png">
-<link href="Css/Style.css" rel="StyleSheet" type="text/css">
+
+<link href="Estilos/login.css" rel="StyleSheet" type="text/css">
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -20,10 +27,6 @@ pageEncoding="ISO-8859-1"%>
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
 	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -34,7 +37,7 @@ pageEncoding="ISO-8859-1"%>
 
 	<div class="footer-siempre-abajo" style="background-color:white">
 	<div class="login-form">
-		<form action="ServletUsuarios?Param=2" method="post" onsubmit="return error();">
+		<form action="ServletLogin?Param=2" method="post" onsubmit="return error();">
 			<h2 class="text-center" style="position:relative; top:-25px;">Home Banking</h2>
 			<h2 class="text-center">Login</h2>
 			<div class="form-group">
@@ -57,25 +60,18 @@ pageEncoding="ISO-8859-1"%>
 				%>
 				<div class="alert alert-danger" role="alert">Usuario y/o contraseña incorrecta</div>
 				<%}%>
-
-
 		</form>
+		
 	</div>
+	
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
-
-
-<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+	<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
         <div class="container text-center">
             <span class="logo-text">© 2020 - By Grupo Nro 4 LAB4  - todos los derechos reservados </span>
         </div>
     </footer>
+    
 </body>
 
 </html>

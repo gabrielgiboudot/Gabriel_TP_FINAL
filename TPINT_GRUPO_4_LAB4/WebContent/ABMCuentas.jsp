@@ -90,7 +90,7 @@
             </div>
         </div>
           </form> 
-        <div class="row">
+        <div class="row" style="overflow:auto; height:400px;">
             <div class="col-md-1 col-sm-4"></div>
             <div class="col-md-10 col-sm-4">
 
@@ -137,6 +137,7 @@
 			      <td><%=cu.getUsuario().getDni() %></td>
 			      <td><%=cu.getUsuario().getCuil()%></td>
 			      <td><%=cu.getCantidadCuentas() %></td>
+			      <%System.out.println(cu);%>
 			   </form>  
 
   				</tr>

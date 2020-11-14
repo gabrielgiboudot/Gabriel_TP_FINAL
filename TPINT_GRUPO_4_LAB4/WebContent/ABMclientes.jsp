@@ -121,7 +121,7 @@
     <div class="footer-siempre-abajo" style="background-color:white">
         <div class="row">
             <div class="col-12" style="padding: 10px; text-align: center;">
-            <form method="post" action="ServletUsuarios2" >
+            <form method="post" action="ServletUsuarios" >
                 <div class="input-group" style="text-align: center;">
                 	<input type="text"   class="form-control" name="txtUsuario" Style="margin: 5px;" placeholder="Usuario">
                     <span class="input-group-addon"></span>
@@ -178,7 +178,7 @@
 	
     <tr>
      <%if(user.getEstado() == true){ %>
-      <form  method="post" action="ServletUsuarios2">
+      <form  method="post" action="ServletUsuarios">
       <td><input   class="btn btn-primary" type="submit" name= "btnEliminar" Onclick="abrir()"  value="Eliminar" ></td>
       <td><input   class="btn btn-primary" type="submit" name= "btnModificar" Onclick="Abrir_Modificar()"  value="Modificar" ></td>
       <th scope="row"><%=user.getIdUsuario()%> <input type="hidden" name="idUsuario" value="<%=user.getIdUsuario() %>" ></th>
@@ -221,7 +221,7 @@
 
     <div class="modal fade bd-example-modal-lg" id="ModalModificaciones" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-        <form  method="post" action="ServletUsuarios2">
+        <form  method="post" action="ServletUsuarios">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Modificar cliente</h5>
@@ -244,7 +244,7 @@
 
 
      <div class="modal fade bd-example-modal-lg" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <form method= "post" action="ServletUsuarios2">
+        <form method= "post" action="ServletUsuarios">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -308,7 +308,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-            		<form  method="post" action="ServletUsuarios2">
+            		<form  method="post" action="ServletUsuarios">
                     <input  class="btn btn-primary col text-center" type="submit" value= "Confirmar" name="btnEliminarE">
                     </form>
                 </div>

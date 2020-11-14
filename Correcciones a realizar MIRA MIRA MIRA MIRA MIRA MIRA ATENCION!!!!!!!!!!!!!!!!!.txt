@@ -1,0 +1,20 @@
+ABMcuentas:
+
+-Paginar listado de cuentas.
+-Agregar saldo en listado.
+-Incluir AGregar,eliminar y modificar cuentas.
+-Agregar mensajes de errores y validaciones.
+-Notificaciones al agregar, modificar o eliminar.
+
+Login:
+
+-Bloquear acceso a todas las paginas si no se verifica la session (no podremos ingresar a pagina ABMclientes por ejemplo si no hay guardado en session un login de un administrador)
+
+-Agregar nombre del usuario logeado a todas las paginas (yo lo deje agregado solo en las paginas de INICIO tanto del administrador como del cliente)
+
+ABMclientes:
+
+-Paginacion.
+-Agregado de filtros de busquedas.
+-Mejorar carteles de errores y noficicaciones.
+-Agregar para poder modificar mas datos del cliente.

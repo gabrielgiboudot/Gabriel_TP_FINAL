@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.DateFormat;
 import java.text.ParseException;
 import entidad.Usuarios;
+import negocioImpl.CuentasPorUsuarioNegImpl;
 import negocioImpl.UsuariosNegImpl;
+import entidad.CuentasPorUsuario;
 import entidad.Generos;
 import entidad.TiposDeUsuarios;
-import javax.servlet.http.HttpSession;
-import datosImpl.UsuariosDaoImpl;
 
 @WebServlet("/ServletUsuarios")
 public class ServletUsuarios extends HttpServlet {
@@ -198,37 +198,42 @@ if(request.getParameter("btnAgregar")!=null) {
 			
 		}
 		
-		
-		HttpSession session = request.getSession();
-		//Ingresar
-		if (request.getParameter("btnIngresar") != null) {
-			// Entra por haber echo click en el hyperlink mostrar usuarios
-			UsuariosDaoImpl UsuarioDao = new UsuariosDaoImpl();
-			Usuarios usuario = UsuarioDao.obtenerUnoxUsuario(request.getParameter("txtUsuario"),request.getParameter("txtClave"));
-			System.out.println(usuario);
-			System.out.println("usuario txt " + request.getParameter("txtUsuario"));
-			System.out.println("clave TXT " + request.getParameter("txtClave"));
-			System.out.println("usuario.getIdUsuario() " + usuario.getIdUsuario());
-			session.setAttribute("Usuario2", usuario);
-			if (usuario.getIdUsuario() != 0) {
-				
-				request.getSession().setAttribute("Session_user",usuario);
-				
-				if (usuario.getTipoDeUsuario().getIdTipoDeUsuario() == 2) {
-					RequestDispatcher rd = request.getRequestDispatcher("/PrincipalADM.jsp");
-			        rd.forward(request, response);
-				} else if (usuario.getTipoDeUsuario().getIdTipoDeUsuario() != 2) {
-					RequestDispatcher rd = request.getRequestDispatcher("/PrincipalCLI.jsp");
-			        rd.forward(request, response);
-
-				}
-			} else {	
-
-				  int error=1;
-				  request.setAttribute("UsuarioYaExiste", error);
-				  request.getRequestDispatcher("Login.jsp").forward(request, response); 
-
+		if(request.getParameter("btnBuscar")!= null) {
+			String nombreUsuario = "";
+			String Email = "";
+			String DNI = "";
+			String Cuil = "";
+			
+			if(request.getParameter("txtUsuario")!= null)
+			{
+		       nombreUsuario = request.getParameter("txtUsuario").toString();
 			}
+			
+			if(request.getParameter("txtEmail")!=null)
+			{
+				Email = request.getParameter("txtEmail").toString(); 
+			}
+			
+			if(request.getParameter("txtDni")!=null)
+			{
+				DNI = request.getParameter("txtDni").toString(); 
+			}
+			
+			if(request.getParameter("txtCuil")!=null)
+			{
+				Cuil = request.getParameter("txtCuil").toString(); 
+			}
+			
+			ArrayList<CuentasPorUsuario> listaCu= new ArrayList<CuentasPorUsuario>();
+			CuentasPorUsuarioNegImpl negocio = new CuentasPorUsuarioNegImpl();
+			listaCu = (ArrayList<CuentasPorUsuario>)negocio.ObtenerFiltro(nombreUsuario,Email,DNI,Cuil);
+			
+			
+			request.setAttribute("BusquedaCu", listaCu);
+			
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/ABMclientes.jsp");
+	        rd.forward(request, response);
 		}
 		
 		
