@@ -47,4 +47,16 @@ public class UsuariosNegImpl implements UsuariosNeg{
 		return userDao.borrar(id);
 	}
 
+
+	@Override
+	public boolean cambiar_estado(int id) {
+		return userDao.cambiar_estado(id);
+	}
+
+
+	@Override
+	public boolean editar_clave(Usuarios usuario) {
+		return userDao.editar_clave(usuario);
+	}
+
 }

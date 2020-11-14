@@ -10,5 +10,6 @@ public interface UsuariosNeg {
 	public boolean insertar(Usuarios usuario);
 	public boolean editar(Usuarios usuario);
 	public boolean borrar(int id);
-	
+	public boolean cambiar_estado(int id);
+	public boolean editar_clave(Usuarios usuario);
 }

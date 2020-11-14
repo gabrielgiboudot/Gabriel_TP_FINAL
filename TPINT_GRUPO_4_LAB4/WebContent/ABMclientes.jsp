@@ -67,7 +67,56 @@
     </nav>
     
 
-    <h1 style="text-align: center; padding-top: 150px;" class="font-italic text">Administración de clientes</h1>
+    <h1 style="text-align: center; padding-top: 150px;" class="font-italic text">Administración de clientes</h1><br>
+     			
+     			<%!int filas = 2; %>
+                    
+                    <%
+                	if(request.getAttribute("insert")!=null)
+                	{
+                		filas = Integer.parseInt(request.getAttribute("insert").toString());
+                }else{%>
+                    <h1 class="modal-title" id="staticBackdropLabel3" style="color:green;"></h1>
+                <%}%>
+                    
+                    <%if(filas == 1)
+                    { %>
+                    	<h1  style="text-align: center; color:green; padding-top: 150px;" class="font-italic text">Usuario agregado con exito.</h1>
+                  <%} else{ if(filas == 0){%>
+                  		<h1 style="text-align: center; color:red; padding-top: 150px;" class="font-italic text">Error al agregar usuario.</h1>
+                  		<%filas = 2; %>
+                  		<!-- <script>alert( "Hola ")</script> -->
+                  <%}} %>
+                  
+                  
+                  
+                  <%
+                  	if(request.getAttribute("delete")!=null){%>
+                  
+ 				
+    			<script type="text/javascript">
+ 				$(function(){
+  					$('#modalEliminar').modal();
+ 				});
+				</script>
+                  <%}%>
+                  
+                  
+                   <%
+                  	if(request.getAttribute("modificar")!=null){%>
+                  
+ 				
+    			<script type="text/javascript">
+ 				$(function(){
+  					$('#ModalModificaciones').modal();
+ 				});
+				</script>
+                  <%}%>
+                  
+                  
+                  
+                  
+                  
     <div class="container-fluid">
     <div class="footer-siempre-abajo" style="background-color:white">
         <div class="row">
@@ -82,7 +131,7 @@
                     <input type="text" ID="txtCuil"  class="form-control" name="txtCuil" onkeypress="javascript:return solonumeros(event)" Style="margin: 5px; width: 100px;" placeholder="Cuil">
                 </div>
                 <div class="col text-center">
-                 <form method="post" action="ServletUsuarios" >
+                 <form method="post" action="ServletUsuarios2" >
                	 <input class="btn btn-primary"  name="btnBuscar" type="submit" value="Buscar" CssClass="btn btn-primary mb-2" Style="text-align: center; width: 100px;">
                  <input class="btn btn-primary"  name="btnTodos" type="submit" value="Todos" CssClass="btn btn-primary mb-2" Style="text-align: center; width: 100px;">
                  </form>
@@ -90,11 +139,11 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="overflow:auto; height:400px;">
             <div class="col-md-1 col-sm-4"></div>
             <div class="col-md-10 col-sm-4">
 
-<table class="table table-dark">
+<table class="table table-dark" style="overflow:auto; height:400px;">
   <thead>
     <tr>
        <th scope="col"></th>
@@ -121,15 +170,20 @@
 		for(Usuarios user : ListaUsuarios) 
 		{
 	%>
+	
     <tr>
-      <td><input HeaderText="Borrado"  class="btn btn-primary" type="submit" name= "btnEliminar" Onclick="abrir()" id="btnEliminar" value="Eliminar" ></td>
-      <td><input HeaderText="Modificacion" class="btn btn-primary" type="submit" name= "btnModificar" Onclick="Abrir_Modificar()" id="btnModificar" value="Modificar" ></td>
-      <th scope="row"><%=user.getIdUsuario()%></th>
+     <%if(user.getEstado() == true){ %>
+      <form  method="post" action="ServletUsuarios2">
+      <td><input   class="btn btn-primary" type="submit" name= "btnEliminar" Onclick="abrir()"  value="Eliminar" ></td>
+      <td><input   class="btn btn-primary" type="submit" name= "btnModificar" Onclick="Abrir_Modificar()"  value="Modificar" ></td>
+      <th scope="row"><%=user.getIdUsuario()%> <input type="hidden" name="idUsuario" value="<%=user.getIdUsuario() %>" ></th>
       <td><%=user.getNombre()%></td>
       <td><%=user.getApellido()%></td>
       <td><%=user.getEmail()%></td>
       <td><%=user.getDni()%></td>
       <td><%=user.getCuil()%></td>
+      </form>
+      <%} %>
     </tr>
    <%  } %>
   </tbody>
@@ -162,6 +216,7 @@
 
     <div class="modal fade bd-example-modal-lg" id="ModalModificaciones" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
+        <form  method="post" action="ServletUsuarios2">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Modificar cliente</h5>
@@ -171,43 +226,24 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <h5>Validar dni</h5>
-                         <input type="text" ID="ValidarDNI"  class="form-control" onkeypress="javascript:return solonumeros(event)"  name="DNI" Style="margin: 5px;" placeholder="Dni">
-                        <h5>Nueva clave</h5>
-                        <input type="text" ID="ModificarCLAVE" class="form-control" name="CLAVE" Style="margin: 5px;" placeholder="Clave">
+                        <input type="password" class="form-control" name="CLAVE" Style="margin: 5px;" required="required" placeholder="Clave">
                     </div>
                 </div>
                 <div class="modal-footer">
-                	<input ID="btnModificar" class="btn btn-primary col text-center" type="submit" value= "Modificar" name="btnModificar">
+                	<input  class="btn btn-primary col text-center" type="submit" value= "Modificar" name="btnMod">
                 </div>
             </div>
+            </form>
         </div>
     </div>
 
 
      <div class="modal fade bd-example-modal-lg" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <form method= "post" action="ServletUsuarios">
+        <form method= "post" action="ServletUsuarios2">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel3">Agregar cliente</h5>
-                    
-                    <%! boolean filas; %>
-                    
-                    <%
-                	if(request.getAttribute("insert")!=null)
-                	{
-                		filas = Boolean.parseBoolean(request.getAttribute("insert").toString());
-                	}	
-                    %>
-                    
-                    <%if(filas == true)
-                    { %>
-                    	<h5 class="modal-title" id="staticBackdropLabel3">Usuario agregado con exito.</h5>
-                  <%} else{ %>
-                  		<h5 class="modal-title" id="staticBackdropLabel3">Error al agregar usuario.</h5>
-                  <%} %>
-                		
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -228,12 +264,18 @@
                         <input type="text"   class="form-control" name="txtEmailA" Style="margin: 5px;" required="required" placeholder="Email">
                          <h5>Nombre de usuario</h5>
                         <input type="text"   class="form-control" name="txtUsuarioA" Style="margin: 5px;" required="required" placeholder="Usuario">
+                         <h5>Contraseña</h5>
+                        <input type="password"   class="form-control" name="txtContraseniaA" Style="margin: 5px;" required="required" placeholder="Contraseña">
                         <h5>Genero</h5>
                         <select  name="txtGenero" class="form-control">
-                            <option value=1 >Femenino</option>
-                            <option value=2 >Masculino</option>
+                            <option value=2 >Femenino</option>
+                            <option value=1 >Masculino</option>
                             <option value=3 >Sin definir</option>
                         </select>
+                        <h5>Telefono</h5>
+                        <input type="text"   class="form-control" name="txtTelefonoA" Style="margin: 5px;" onkeypress="javascript:return solonumeros(event)" required="required" placeholder="Telefono">
+                        <h5>Direccion</h5>
+                        <input type="text"   class="form-control" name="txtDireccionA" Style="margin: 5px;" required="required" placeholder="Direccion">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -261,7 +303,9 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <input ID="btnEliminarE" class="btn btn-primary col text-center" type="submit" value= "Confirmar" name="btnEliminarE">
+            		<form  method="post" action="ServletUsuarios2">
+                    <input  class="btn btn-primary col text-center" type="submit" value= "Confirmar" name="btnEliminarE">
+                    </form>
                 </div>
 
             </div>
@@ -297,7 +341,7 @@
              $('#modalEliminar').modal('show');
          }
     </script>
-
+    
     <script> 
         function Agregar() {
             $('#ModalAgregar').modal('show');

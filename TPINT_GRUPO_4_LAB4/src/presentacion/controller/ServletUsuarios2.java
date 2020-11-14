@@ -19,12 +19,12 @@ import negocioImpl.UsuariosNegImpl;
 import entidad.Generos;
 import entidad.TiposDeUsuarios;
 
-@WebServlet("/ServletUsuarios")
-public class ServletUsuarios extends HttpServlet {
+@WebServlet("/ServletUsuarios2")
+public class ServletUsuarios2 extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
        
-    public ServletUsuarios() {
+    public ServletUsuarios2() {
         super();
     }
 

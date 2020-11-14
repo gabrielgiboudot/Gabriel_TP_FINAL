@@ -214,6 +214,35 @@ public class UsuariosDaoImpl implements UsuariosDao {
 		}
 		return estado;
 	}
+	
+public boolean cambiar_estado(int id) {
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		boolean estado= true;
+		
+		cn= new Conexion();
+		cn.Open();
+		
+		String query= "UPDATE `tp_banco`.`usuarios` SET `ESTADO` = 0 WHERE (`IdUsuario` = '"+id+"');";
+		try {
+			estado= cn.execute(query);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		finally
+		{
+			cn.close();
+		}
+		return estado;
+	}
 
 	public Conexion getCn() {
 		return cn;
@@ -221,6 +250,35 @@ public class UsuariosDaoImpl implements UsuariosDao {
 
 	public void setCn(Conexion cn) {
 		this.cn = cn;
+	}
+
+	@Override
+	public boolean editar_clave(Usuarios usuario) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		boolean estado= true;
+		
+		cn= new Conexion();
+		cn.Open();
+		
+		String query= "UPDATE `tp_banco`.`usuarios` SET `Contraseña` = '"+usuario.getContraseña()+"' WHERE (`IdUsuario` = '"+usuario.getIdUsuario()+"');";
+		try {
+			estado= cn.execute(query);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		finally
+		{
+			cn.close();
+		}
+		return estado;
 	}
 
 }
