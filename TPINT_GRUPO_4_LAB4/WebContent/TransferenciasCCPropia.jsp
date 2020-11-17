@@ -1,10 +1,12 @@
+<%@page import="entidad.Cuentas"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="entidad.Usuarios"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
- <meta charset="utf-8">
+<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -13,7 +15,7 @@
    <style type="text/css">
   	<jsp:include page="/Estilos/PrincipalADM.css"></jsp:include>
   </style>
- <title>Movimientos Cliente</title>
+ <title>Transferencias Cliente</title>
 </head>
 <body>
 
@@ -27,7 +29,7 @@
               </li>
 
       	     <li class="nav-item active">
-                   <a class="nav-link" href="CuentasCli.jsp" style="color:white">Cuentas <span class="sr-only">(current)</span></a>
+                   <a class="nav-link" href="ServletCuentasCliente?IdUsuario=1" style="color:white">Cuentas <span class="sr-only">(current)</span></a>
              </li>
 
               <li class="nav-item dropdown">
@@ -67,44 +69,84 @@
 
 <div class="footer-siempre-abajo" style="background-color:white">
 
+
+<form action="ServletTransferencias?CuentaPropia=1" method="post">
+
 <div class="container mt-3">
-  <h2>Movimientos</h2>
-  <p>Aqui podrá visualizar todos los movimientos generados en su cuenta.</p> 
-  <h5>Caja de Ahorro $ - 197-8852/4</h5> 
-  <input class="form-control" id="myInput" type="text" placeholder="">
+  <h2>Transferir a Cuenta Propia</h2>
+  <p>Selecciona desde que cuenta queres enviar la plata</p> 
+  <h3>Origen</h3> 
+  <div class="dropdown">
+	  <select class="btn btn-light dropdown-toggle" aria-labelledby="dropdownMenuButton" name="CuentaOrigen">
+	    <option class="dropdown-item" value="SinSeleccion">Seleccionar Cuenta</option>  
+  
+  <% 
+	ArrayList<Cuentas> cuentas = null;
+	if(request.getAttribute("CuentasCliente")!=null)
+	{
+		cuentas = (ArrayList<Cuentas>)request.getAttribute("CuentasCliente");
+	}
+
+	
+%>
+		  
+<% 	if(cuentas!=null)
+	for(Cuentas cu : cuentas)
+  	{
+		
+		if(cu.getCbu()!=null)
+		{
+		 %>	
+
+    	<option class="dropdown-item" value="<%=cu.getNroDeCuenta()%>"><%=cu.getTipoDeCuenta().getDescripcion() %> $ - <%=cu.getNroDeCuenta() %> - $ <%=cu.getSaldo() %></option>
+	<%}
+}%> 
+</select>
+</div>
+ 
+  
+
+ 	
+ 	<br> 
+  	<div class="input-group mb-3">
+ 		<input type="text" class="form-control" placeholder="Detalle / Concepto" id="txtDetalle" aria-label="Recipient's username" aria-describedby="basic-addon2">
+	</div>
+	<div class="input-group mb-3">
+   		<input type="text" class="form-control" placeholder="Importe" id="txtImporte" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    </div>
+  
+  
   <br>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Tipo de Movimiento</th>
-        <th>Fecha</th>  
-        <th>Detalle/Concepto</th> 
-        <th>Importe</th>
-        
-      </tr>
-    </thead>
-    <tbody id="myTable">
-      <tr>
-        <td>Alta de Cuenta</td>
-        <td>05/02/2020</td>
-        <td>Nueva Caja de Ahorro</td>
-        <td>25.000</td>
-        
-      </tr>
-      <tr>
-        <td>Alta de Prestamo</td>
-        <td>05/02/2020</td>
-        <td>Prestamo inmobiliario</td>
-        <td>1.000.000</td>
-   
-      </tr>
-    </tbody>
-  </table> 
+  <h3>Destino</h3>
+  <h5>Seleccione su Cuenta Destino</h5> 
+    <div class="dropdown">
+	  <select class="btn btn-light dropdown-toggle" aria-labelledby="dropdownMenuButton" name="CuentaDestino">
+	    <option class="dropdown-item" value="SinSeleccion">Seleccionar Cuenta</option>   
+ <% 	if(cuentas!=null)
+	for(Cuentas cu : cuentas)
+  	{
+		
+		if(cu.getCbu()!=null)
+		{
+		 %>	
+
+    	<option class="dropdown-item" value="<%=cu.getNroDeCuenta()%>"><%=cu.getTipoDeCuenta().getDescripcion() %> $ - <%=cu.getNroDeCuenta() %> - $ <%=cu.getSaldo() %></option>
+	
+	<%}
+}%>
+	</select>
+	</div>
+
+    <br>
+  <button type="button" class="btn btn-dark" >
+  	Confirmar Transferencia
+  </button>	
+
+  </div>
+</form>
 
 </div>
 
-
-</div>
 
 
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">

@@ -1,0 +1,12 @@
+Archivos modificados
+
+
+CuentasCli.jsp
+TransferenciasCCPropia.jsp
+TransferenciasCCTerceros.jsp
+MovimientosCliente.jsp
+
+
+
+Ultima parte, programar Servlet doPost para validar datos ingresados
+en Transferencias y generar los movimientos en Base.

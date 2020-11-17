@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="entidad.Cuentas"%>
+<%@page import="entidad.Usuarios"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,7 +29,7 @@
               </li>
 
       	     <li class="nav-item active">
-                   <a class="nav-link" href="CuentasCli.jsp" style="color:white">Cuentas <span class="sr-only">(current)</span></a>
+                   <a class="nav-link" href="ServletCuentasCliente?IdUsuario=1" style="color:white">Cuentas <span class="sr-only">(current)</span></a>
              </li>
 
               <li class="nav-item dropdown">
@@ -42,8 +45,14 @@
           </ul>
        </div>
   
+   			<%! Usuarios u = new Usuarios(); %>
        <span id="perfil" class="navbar-text" style="padding: 10px">
-       		<label id="Usuario">Usuario Activo</label>
+       			<%u= (Usuarios)request.getSession().getAttribute("Session_user");
+         	   System.out.println(u.getApellido()); %>
+         	   <%if(u.getApellido() != null){ %>
+      		 <label><%=u.getNombre()+" "+u.getApellido() %></label>
+      		 <%} %>
+      		 
             <a href="DatosPersonales.jsp">
                 <img
                     src="https://i.ibb.co/Xzbf1pS/usuario.png" />
@@ -60,23 +69,59 @@
     </nav>
 
 <div class="footer-siempre-abajo" style="background-color:white">
+
+<% 
+	ArrayList<Cuentas> cuentas = null;
+	if(request.getAttribute("CuentasCliente")!=null)
+	{
+		cuentas = (ArrayList<Cuentas>)request.getAttribute("CuentasCliente");
+	}
+
+%>			  
+<% 	if(cuentas!=null)
+	for(Cuentas cu : cuentas)
+  	{
+		
+		if(cu.getCbu()!=null)
+		{
+		 %>	
+
+
+
 <div class="container-fluid">
-<br>
-<div class="card w-50">
-  <div class="card-body">
-    <h5 class="card-title">Caja de Ahorro $ - 197-8852/4</h5>
+	<br>
+	<div class="card w-50">
+  		<div class="card-body">
+    		<h5 class="card-title"><%=cu.getTipoDeCuenta().getDescripcion() %> $ - <%=cu.getNroDeCuenta() %></h5>
     
-    <label class="card-text" id="CBU">CBU 5832197532158</label>
+   			 <label class="card-text" id="CBU">CBU <%=cu.getCbu() %></label>
     
-    <p class="card-text" >
-    <label class="card-text" id="Saldo">$ 2321,58</label>
-    </p>
+   		 <p class="card-text" >
+   		 <label class="card-text" id="Saldo">$ <%=cu.getSaldo() %></label>
+   		 </p>
     
-    <a href="TransferenciasCliente.jsp" class="btn btn-secondary">Transferir</a>
-    <a href="MovimientosCliente.jsp" class="btn btn-secondary">Ver Movimientos</a>
-  </div>
+   
+    	<div class="dropdown">
+ 			 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    			Transferir
+  			</button>
+  			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    		<a class="dropdown-item" href="ServletTransferencias?CuentaPropia=1">Cuenta Propia</a>
+    		<a class="dropdown-item" href="TransferenciasCCTerceros.jsp">Cuenta de Terceros</a>
+    		</div>
+		<a href="MovimientosCliente.jsp" class="btn btn-secondary">Ver Movimientos</a>
+		</div>
+  
+ 	 	</div>
+	</div>
 </div>
-</div>
+
+<%}
+		else
+		{}
+}%>
+
+
 </div>
 
 
