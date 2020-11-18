@@ -109,10 +109,10 @@
  	
  	<br> 
   	<div class="input-group mb-3">
- 		<input type="text" class="form-control" placeholder="Detalle / Concepto" id="txtDetalle" aria-label="Recipient's username" aria-describedby="basic-addon2">
+ 		<input type="text" class="form-control" placeholder="Detalle / Concepto" name="txtDetalle" aria-label="Recipient's username" aria-describedby="basic-addon2">
 	</div>
 	<div class="input-group mb-3">
-   		<input type="text" class="form-control" placeholder="Importe" id="txtImporte" aria-label="Recipient's username" aria-describedby="basic-addon2">
+   		<input type="text" class="form-control" placeholder="Importe" name="txtImporte" aria-label="Recipient's username" aria-describedby="basic-addon2">
     </div>
   
   
@@ -138,9 +138,9 @@
 	</div>
 
     <br>
-  <button type="button" class="btn btn-dark" >
-  	Confirmar Transferencia
-  </button>	
+	<input  type="submit" value="Confirmar Transferencia"
+					class="btn btn-dark" name="btnConfirmar">	
+  			
 
   </div>
 </form>
