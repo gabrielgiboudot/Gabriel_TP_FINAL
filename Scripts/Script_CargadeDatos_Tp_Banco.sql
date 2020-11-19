@@ -38,6 +38,6 @@ END //
 DELIMITER ;
 DELIMITER //
 
-call prMovTransferencias(1000.52,1,2,1,4,"Prueba Transferencia");
+
 
 
