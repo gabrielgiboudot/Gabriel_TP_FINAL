@@ -149,6 +149,59 @@
 
 
 
+
+<% String mensaje = null;
+if(request.getAttribute("MensajeTransferencias")!= null)
+{
+	
+	mensaje = request.getAttribute("MensajeTransferencias").toString();
+
+%>
+
+    <script> 
+    window.onload = function abrir() {
+        $('#modalMensaje').modal('show');
+        
+    }
+    </script>
+
+<%
+
+
+}else{
+
+ %>	
+    
+<%}
+%>
+
+
+
+<div class="modal fade" id="modalMensaje" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Mensaje</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= mensaje %>
+      </div>
+      <div class="modal-footer">
+          <a href="ServletCuentasCliente?IdUsuario=1" class="btn btn-secondary" >Close</a>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
         <div class="container text-center">
             <span class="logo-text">© 2020 - By Grupo Nro 4 LAB4  - todos los derechos reservados </span>

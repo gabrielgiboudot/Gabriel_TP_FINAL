@@ -21,6 +21,7 @@ public class MovimientosDaoImpl implements MovimientosDao {
 		cn = new Conexion();
 		cn.Open();
 		
+		int sp_check = 0;
 		boolean filas= false;
 		try {
 		
@@ -32,8 +33,12 @@ public class MovimientosDaoImpl implements MovimientosDao {
 		sp.setInt(5, usuariodestino);
 		sp.setString(6, detalle);
 		
-		filas = sp.execute();
-		
+		 sp_check = sp.executeUpdate();
+	
+		if( sp_check == 1)
+		{
+			filas = true;
+		}
 		
 		} catch (Exception e) {
 			e.printStackTrace();

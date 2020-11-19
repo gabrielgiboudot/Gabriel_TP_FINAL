@@ -79,7 +79,7 @@ public class ServletTransferencias extends HttpServlet {
 			String mensaje;
 					
 						
-			if(request.getParameter("CuentaOrigen").toString()!="SinSeleccion")
+			if(request.getParameter("CuentaOrigen").toString().equals("SinSeleccion") == false)
 			{
 			cuentaorigen =Integer.parseInt(request.getParameter("CuentaOrigen").toString());				
 			
@@ -95,7 +95,7 @@ public class ServletTransferencias extends HttpServlet {
 				error= 1;
 			}
 			
-			if(request.getParameter("txtImporte").toString()!= null && Float.parseFloat(request.getParameter("txtImporte").toString())>0)
+			if(request.getParameter("txtImporte").toString().length()> 0 && Float.parseFloat(request.getParameter("txtImporte").toString()) > importe)
 			{
 				importe = Float.parseFloat(request.getParameter("txtImporte").toString());
 				
@@ -103,7 +103,7 @@ public class ServletTransferencias extends HttpServlet {
 				error =1;
 			}
 			
-			if(request.getParameter("CuentaDestino").toString()!="SinSeleccion" && request.getParameter("CuentaDestino").toString()!=request.getParameter("CuentaOrigen").toString() )
+			if(request.getParameter("CuentaDestino").toString().equals("SinSeleccion") == false && request.getParameter("CuentaDestino").toString().equals(request.getParameter("CuentaOrigen").toString()) == false )
 			{
 			cuentadestino = Integer.parseInt(request.getParameter("CuentaDestino").toString());				
 			}else {
@@ -120,41 +120,30 @@ public class ServletTransferencias extends HttpServlet {
 				if(importe <= c.getSaldo() )
 				{
 					filas= transferencia.Transferencias(importe, cuentaorigen, cuentadestino, usuarioorigen, usuariodestino, detalle);
+				
+					if(filas != false)
+					{
+						mensaje = "Transferencia Exitosa";
+						request.setAttribute("MensajeTransferencias", mensaje);	
+					
+					}else {
+						mensaje = "Error al realizar la Transferencia, intente mas tarde....";
+						request.setAttribute("MensajeTransferencias", mensaje);	
+					}
+				
 				}else {
 					
 					mensaje = "No se pudo realizar la transferencia, no posee Saldo Disponible en su cuenta Origen";
 					request.setAttribute("MensajeTransferencias", mensaje);
-					System.out.println(mensaje);
-
 				}
 		
 			}else {
-				
 				 mensaje = "No se pudo realizar la transferencia, verificar los campos ingresados";
 				 request.setAttribute("MensajeTransferencias", mensaje);
-				 System.out.println(mensaje);
 			}
 			
-					
-			if(filas != false)
-			{
-				mensaje = "Transferencia Exitosa";
-				request.setAttribute("MensajeTransferencias", mensaje);	
-				System.out.println(mensaje);
 			RequestDispatcher rd = request.getRequestDispatcher("/TransferenciasCCPropia.jsp");   
-	        rd.forward(request, response);
-			}else {
-				mensaje = "Error al realizar la Transferencia, intente mas tarde....";
-				request.setAttribute("MensajeTransferencias", mensaje);	
-				System.out.println(mensaje);
-			RequestDispatcher rd = request.getRequestDispatcher("/TransferenciasCCPropia.jsp");   
-	        rd.forward(request, response);
-			}
-		
+	        rd.forward(request, response);			
 		}
-		
-		
-		
 	}
-
 }
