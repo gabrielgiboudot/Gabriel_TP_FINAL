@@ -21,6 +21,19 @@
 <!--Estilos propios-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Estilos/AMBclientes.css" />
 
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+
+ <script type="text/javascript">
+ $(document).ready( function () {
+ $('#table_id').DataTable();
+ } );
+ </script>
+
 </head>
 
 <body>
@@ -67,9 +80,17 @@
     </nav>
     
 
-    <h1 style="text-align: center; padding-top: 150px;" class="font-italic text">Administración de clientes</h1><br>
+    <h1 style="text-align: center; padding-top: 50px;" class="font-italic text">Administración de clientes</h1><br>
      			
      			<%!int filas = 2; %>
+     			
+     			         <%! String texto; %>
+                  		 
+                  		 <% 
+                  		 if(request.getAttribute("Error")!= null){
+                  			texto = request.getAttribute("Error").toString(); 
+                  		 }
+                  		 %>
                     
                     <%
                 	if(request.getAttribute("insert")!=null)
@@ -81,13 +102,18 @@
                     
                     <%if(filas == 1)
                     { %>
-                    	<h1  style="text-align: center; color:green; padding-top: 150px;" class="font-italic text">Usuario agregado con exito.</h1>
+                    	<h1 id="1" style="text-align: center; color:green; padding-top: 50px;" class="font-italic text">Usuario agregado con exito.</h1>
+                    	<%filas = 2; %>
                   <%} else{ if(filas == 0){%>
-                  		<h1 style="text-align: center; color:red; padding-top: 150px;" class="font-italic text">Error al agregar usuario.</h1>
-                  		<%filas = 2; %>
-                  		<!-- <script>alert( "Hola ")</script> -->
+                  		<h3 id="1" style="text-align: center; color:red; padding-top: 50px;" class="font-italic text"><%= "Error al agregar usuario."+" "+texto %></h3>
+                  		 <script>alert(<%=texto%>)</script> 
+                  		 <%filas = 2; %>
                   <%}} %>
                   
+                  <% if(filas == 2){ %>
+
+                  	<h1 id="1" style="text-align: center; color:red; padding-top: 50px;" class="font-italic text"></h1>
+                  <%}%>
                   
                   
                   <%
@@ -113,8 +139,7 @@
 				</script>
                   <%}%>
                   
-                  
-                  
+           
                   
                   
     <div class="container-fluid">
@@ -143,7 +168,7 @@
             <div class="col-md-1 col-sm-4"></div>
             <div class="col-md-10 col-sm-4">
 
-<table class="table table-dark" style="overflow:auto; height:400px;">
+<table id="table_id" class="table table-dark" style="overflow:auto; height:400px;">
   <thead>
     <tr>
        <th scope="col"></th>
@@ -176,7 +201,7 @@
 		{
 	%>
 	
-    <tr>
+    <tr style="color:black">
      <%if(user.getEstado() == true){ %>
       <form  method="post" action="ServletUsuarios">
       <td><input   class="btn btn-primary" type="submit" name= "btnEliminar" Onclick="abrir()"  value="Eliminar" ></td>
@@ -217,9 +242,7 @@
 
      
    
-
-
-    <div class="modal fade bd-example-modal-lg" id="ModalModificaciones" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="ModalModificaciones" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
         <form  method="post" action="ServletUsuarios">
             <div class="modal-content">
@@ -231,7 +254,36 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="password" class="form-control" name="CLAVE" Style="margin: 5px;" required="required" placeholder="Clave">
+                    	<%if(request.getSession().getAttribute("UserMod")!= null){ %>
+                    	<%! Usuarios u = new Usuarios(); %>
+                    	<% u = (Usuarios)request.getSession().getAttribute("UserMod");  %>
+                        <h5>Dni</h5>
+                        <input type="text" value =<%=u.getDni() %>   class="form-control" onkeypress="javascript:return solonumeros(event)"  name="DNIM" required="required" Style="margin: 5px;" placeholder="Dni">
+                        <h5>Cuil</h5>
+                        <input type="text" value =<%=u.getCuil() %>  class="form-control" onkeypress="javascript:return solonumeros(event)"  name="CUILM" required="required"  Style="margin: 5px;" placeholder="Cuil">
+                        <h5>Nombre</h5>
+                        <input type="text"  value =<%=u.getNombre() %>    class="form-control" name="NOMBREM" Style="margin: 5px;" required="required" placeholder="Nombre">
+                        <h5>Apellido</h5>
+                        <input type="text" value =<%=u.getApellido() %>  class="form-control" name="APELLIDOM" Style="margin: 5px;" required="required" placeholder="Apellido">
+                        <h5>Fecha de nacimiento</h5>
+                        <input type="date" value =<%=u.getFechaNacimiento() %> class="form-control" name="FECHAM"  min="1930-01-01" max="2002-01-01" class="form-control bg-white border-left-0 border-md" required="required" Style="margin: 5px;">
+                        <h5>Email</h5>
+                        <input type="text" value =<%=u.getEmail() %>  class="form-control" name="EMAILM" Style="margin: 5px;" required="required" placeholder="Email">
+                         <h5>Contraseña</h5>
+                        <input type="password"  value =<%=u.getContraseña() %>   class="form-control" name="CLAVEM" Style="margin: 5px;" required="required" placeholder="Contraseña">
+                        <h5>Genero</h5>
+                        <select  name="GENEROM" class="form-control">
+                        	<option selected="true" disabled="disabled">seleccionar</option>
+                            <option value=2 >Femenino</option>
+                            <option value=1 >Masculino</option>
+                            <option value=3 >Sin definir</option>
+                        </select>
+                        <h5>Telefono</h5>
+                        <input type="text" value =<%=u.getNumeroDeTelefono() %>   class="form-control" name="TELEFONOM" Style="margin: 5px;" onkeypress="javascript:return solonumeros(event)" required="required" placeholder="Telefono">
+                        <h5>Direccion</h5>
+                        <input type="text" value ="<%=u.getDireccion() %>"  class="form-control" name="DIRECCIONM" Style="margin: 5px;" required="required" >
+                         <% System.out.println(u); %>
+                        <%}%>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -242,7 +294,7 @@
         </div>
     </div>
 
-
+  
      <div class="modal fade bd-example-modal-lg" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <form method= "post" action="ServletUsuarios">
         <div class="modal-dialog modal-lg">
@@ -273,6 +325,7 @@
                         <input type="password"   class="form-control" name="txtContraseniaA" Style="margin: 5px;" required="required" placeholder="Contraseña">
                         <h5>Genero</h5>
                         <select  name="txtGenero" class="form-control">
+                         	<option selected="true" disabled="disabled">seleccionar</option>
                             <option value=2 >Femenino</option>
                             <option value=1 >Masculino</option>
                             <option value=3 >Sin definir</option>
